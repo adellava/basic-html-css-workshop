@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="utf-8">
+        <title>Cosa c'è dentro Head?</title>
+
+        <meta name="author" content="Antonio Dell'Ava">
+        <meta name="description" content="Descrive i possibili contenuto e il ruolo dei tag che possono errere presenti dentro head">
+        
+        <!-- 
+            meta è usato anche per esprimere valori custom ( leggi => https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta),
+            come per esempio i meta di facebook https://developers.facebook.com/docs/sharing/webmasters/?locale=it_IT
+        -->
+        <meta property="og:description" content="Pagina dimostrativa di cosa c'è dentro head">
+        <meta property="og:title" content="Corso di HTML">
+
+        <!-- link -->
+        <link href="./link-element-example.css" rel="stylesheet">
+        <link rel="icon" type="image/png" href="favicon.png">
+        <!-- 
+            script => https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script
+
+            defer:
+                - non blocca la pagina, dice al browser "vai avanti con il resto dell'HTML mentre vengo scaricato"
+                - uno script con defer viene eseguito quanto il DOM è caricato ( giusto prima dell'evento DOMContentLoaded )
+                - gli script "deferred" mantengono nell'esecuzione il loro ordine di import
+                - è consigliabile per gli script che conocrrono al comportamento di una SPA
+
+            async: 
+                - è simile a defer ma più radicale
+                - non conta l'ordine di import chi prima viene scaricato 
+                - DOMContentLoaded è irrilevamente, uno script può essere esguito quindi prima che il documento sia totalmente scaricato
+                - è consigliabile per script che hanno vita indipendente come gli ads
+
+        -->
+        <script>
+            document.addEventListener('DOMContentLoaded', () => console.log("DOM ready dopo il mio defer!"));
+        </script>
+        <script src="javascript.js" type="text/javascript" defer></script>
+        <style type="text/css">
+            p {
+              color: #26b72b;
+            }
+        </style>
+
+    </head>
+    <body>
+        <p>
+            E quindi uscimmo a riveder le stelle
+        </p>
+        <p>
+            (Inferno XXXIV, 139)
+        </p>
+    </body>
+</html>
