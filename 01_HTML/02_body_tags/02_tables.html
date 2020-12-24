@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="utf-8">
+        <title>Tabelle</title>
+        <style>
+            table {
+                border-collapse: collapse;
+            }
+
+            table,
+            td {
+                border: 1px solid #333;
+            }
+
+            thead,
+            tfoot {
+                background-color: #333;
+                color: #fff;
+            }
+
+        </style>
+    </head>
+    <body>
+
+        <h1>Tabelle</h1>
+
+
+        <section>
+
+            <h2>1. Tabella Base</h2>
+            <table>
+                <tr>
+                    <td>1347</td>
+                    <td>Genova</td>
+                </tr>
+                <tr>
+                    <td>1348</td>
+                    <td>Firenze</td>
+                </tr>
+                <tr>
+                    <td>1351</td>
+                    <td>Copenhagen</td>
+                </tr>
+                <tr>
+                    <td>1353</td>
+                    <td>Mosca</td>
+                </tr>
+                <tr>
+                    <td>1466</td>
+                    <td>Parigi</td>
+                </tr>
+                <tr>
+                    <td>1576</td>
+                    <td>Venezia</td>
+                </tr>
+                <tr>
+                    <td>1623</td>
+                    <td>Amsterdam</td>
+                </tr>
+                <tr>
+                    <td>1629</td>
+                    <td>Milano</td>
+                </tr>
+                <tr>
+                    <td>1649</td>
+                    <td>Siviglia</td>
+                </tr>
+                <tr>
+                    <td>1656</td>
+                    <td>Napoli</td>
+                </tr>
+                <tr>
+                    <td>1665</td>
+                    <td>Londra</td>
+                </tr>
+                <tr>
+                    <td>1679</td>
+                    <td>Vienna</td>
+                </tr>
+                <tr>
+                    <td>1720</td>
+                    <td>Marsiglia</td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <h2>2. Tabella Completa</h2>
+            <table>
+                
+                <thead>
+                    <tr>
+                        <th>Popolazione Europea 1300</th>
+                        <th>Popolazione Europea 1400</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <tr>
+                        <td>~80M</td>
+                        <td>~50M</td>
+                    </tr>
+                </tbody>
+                
+                <tfoot>
+                    <tr>
+                        <th>Popolazione Europea 1300</th>
+                        <th>Popolazione Europea 1400</th>
+                    </tr>
+                </tfoot>
+                
+                <caption>Evoluzione demografica del basso medioevo</caption>
+
+            </table>
+        </section>
+
+        <section>
+            <h2>2. Colspan & Rowspan</h2>
+            <table>
+                
+                <thead>
+                    <tr>
+                        <th>Inferno</th>
+                        <th>Purgatorio</th>
+                        <th>Paradiso</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <tr>
+                        <td colspan="2">Virgilio</td>
+                        <td>Beatrice</td>
+                    </tr>
+                    <tr>
+                        <td>Gironi in forma conica</td>
+                        <td>Montagna</td>
+                        <td>Cosmo Tolemaico</td>
+                    </tr>
+                </tbody>
+                
+            </table>
+
+            <br/>
+
+            <table>
+                
+                <thead>
+                    <tr>
+                        <th>Fazione</th>
+                        <th>Composizione</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <tr>
+                        <td rowspan="3">Guelfi</td>
+                        <td>Firenze</td>
+                    </tr>
+                    <tr>
+                        <td>Pistoia</td>
+                    </tr>
+                    <tr>
+                        <td>Siena</td>
+                    </tr>
+                    <tr>
+                        <td>Ghibellini</td>
+                        <td>Arezzo</td>
+                    </tr>
+                </tbody>
+
+                <caption>Battaglia di Campaldino</caption>
+                
+            </table>
+        </section>
+    </body>
+</html>
