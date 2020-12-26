@@ -12,6 +12,12 @@
             const data = Object.fromEntries( form.entries() );
             console.log("data", data);
         };
+
+        const onSubmitDialog = (event) => {
+            const form = new FormData(event.target);
+            const data = Object.fromEntries( form.entries() );
+            console.log("data", data);
+        };
     </script>
     <style>
         input:valid:not(:empty) {
@@ -102,7 +108,7 @@
             </datalist>
             <br/>
             <label>Email:
-                <input type="email" value="" multiple required />
+                <input type="email" value="" placeholder="inserisci emailx" multiple required />
             </label>
             <br/>
             <label>Ricerca:
@@ -214,7 +220,7 @@
 
 
         <fieldset>
-            <label>Select</label>
+            <legend>Select</legend>
             <select>
                 <optgroup label="Alto medioevo">
                     <option>Regni romano-barbarici</option>
@@ -230,12 +236,10 @@
             </select>
         </fieldset>
     
-        <section>
-            <label>Textarea</label>
-            <textarea rows="5" cols="33">
-                Lorem ipsum
-            </textarea>
-        </section>
+        <fieldset>
+            <legend>Textarea</legend>
+            <textarea rows="5" cols="33">Lorem ipsum</textarea>
+        </fieldset>
     </section>
 
 
@@ -255,6 +259,19 @@
         </meter>
         <br/>
         <progress max="100" value="70"></progress>
+    </section>
+
+    <section>
+        <h2>4. Dialog e Form</h2>
+        <button onclick="window.dialog.showModal();">apri dialog</button>
+        <dialog id="dialog">
+            <p>Sono una dialog Ghibellina.</p>
+            <form method="dialog" onsubmit="return onSubmitDialog(event)">
+                <input style="width: 400px" required placeholder="Inserisci il tuo nome Ghibellino (es. 'Guglielmino degli Ubertini')" name="nome-ghibellino">
+                <button>Annulla</button>
+                <button type="submit">Invia</button>
+            </form>
+        </dialog>
     </section>
     </body>
 </html>
