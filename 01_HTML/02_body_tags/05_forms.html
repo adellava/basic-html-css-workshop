@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="utf-8">
+        <title>Form</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <script defer>
+        const onSubmit = (event) => {
+            event.preventDefault();
+            const form = new FormData(event.target);
+            const data = Object.fromEntries( form.entries() );
+            console.log("data", data);
+        };
+    </script>
+    <style>
+        input:valid:not(:empty) {
+            border: 1px solid green;
+        }
+        input:empty {
+            border: 1px solid black;
+        }
+        input:invalid {
+            border: 1px dashed red;
+        }
+
+        input:focus:invalid {
+            border: 1px dashed black;
+        }
+    </style>
+    <body>
+
+    <h1>Form</h1>
+
+    <section>
+        <h2>1. Overview</h2>
+        <form onsubmit="return onSubmit(event);">
+            <fieldset>
+                <legend>Dati Anagrafici</legend>
+                <label>
+                    Dimmi il tuo nome
+                    <input required name="nome" type="text" minlength="3" maxlength="50" value="Durante detto Dante degli Alighieri"/>
+                </label>
+                <label>
+                    Dimmi i tuoi anni
+                    <input required name="anni" type="number" min="0" max="150" value="33" step="1"/>
+                </label>
+            </fieldset>
+            <fieldset>
+                <legend>Lavoro</legend>
+                <label>
+                    Lavora?
+                    <input type="checkbox" name="has-lavoro" checked>
+                </label>
+                <label>
+                    Tipo di Impiego
+                    <input name="lavoro" list="mestieri" pattern="[Pp]oeta|[Bb]anchiere|[Mm]ercante|[Ss]anto|[Nn]avigatore|[Uu]suraio|[Cc]avaliere|[Pp]rete|[Mm]endicante" required type="text" />
+                    <small>(valori accettati: poeta, banchiere, mercante, santo, navigatore, usuraio, cavaliere, prete, mendicante)</small>
+                </label>
+
+            </fieldset>
+            <fieldset>
+                <legend>Partito</legend>
+                <label>
+                    <input type="radio" name="ghibellini">
+                    Ghibellini
+                </label>
+                <br/>
+                <label>
+                    <input type="radio"  name="guelfibianchi" checked>
+                    Guelfi Bianchi
+                </label>
+                <br/>
+                <label>
+                    <input type="radio" name="guelfineri">
+                    Guelfi Neri
+                </label>
+            </fieldset>
+            <input type="hidden" name="idutente-comune-guelfo-di-firenze" value="78798237893">
+            <menu>
+                <button type="submit"  autofocus="true">Invia</button>
+                <button type="reset"  autofocus="true">Reset</button>
+            </menu>
+        </form>
+        <hr/>
+    </section>
+
+    <section>
+        <h2>2. Tipi di Input</h2>
+
+        <fieldset>
+            <legend>Testi</legend>
+            <label for="country">Testi:</label>
+            <input type="text" value="Firenze" list="citta" pattern="Siena|Pisa|Firenze|Lucca|Pistoia|Arezzo">
+            <datalist id="citta">
+                <option>Siena</option>
+                <option>Pisa</option>
+                <option>Firenze</option>
+                <option>Lucca</option>
+                <option>Pistoia</option>
+                <option>Arezzo</option>
+            </datalist>
+            <br/>
+            <label>Email:
+                <input type="email" value="" multiple required />
+            </label>
+            <br/>
+            <label>Ricerca:
+                <input type="search" value="" />
+            </label>
+            <br/>
+            <label>Telefono:
+                <input type="tel" value="" />
+            </label>
+            <br/>
+            <label>URL:
+                <input type="url" value="" />
+            </label>
+            <br/>
+            <label>Numero:
+                <input type="number" min="0" max="1" step="0.01" />
+            </label>
+            <br/>
+            <label>Colore:
+                <input type="color" />
+            </label>
+        </fieldset>
+
+        <fieldset>
+            <legend>Data e tempo</legend>
+            <div>
+                <label>
+                    Data e tempo:
+                    <input type="datetime-local" />
+                </label>
+            </div>
+            <div>
+                <label>
+                    Data:
+                    <input type="date" />
+                    <input type="date" min="2015-01-01" max="2022-12-31" step="7">
+                </label>
+            </div>
+            <div>
+                <label>
+                    Mese:
+                    <input type="month" />
+                </label>
+            </div>
+            <div>
+                <label>
+                    Tempo:
+                    <input type="time" />
+                </label>
+            </div>
+            <div>
+                <label>
+                    Settimana:
+                    <input type="week" />
+                </label>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Radio</legend>
+            <label>
+                <input type="radio" name="ghibellini" disabled>
+                Ghibellini
+            </label>
+            <br/>
+            <label>
+                <input type="radio"  name="guelfibianchi" checked>
+                Guelfi Bianchi
+            </label>
+            <br/>
+            <label>
+                <input type="radio" name="guelfineri">
+                Guelfi Neri
+            </label>
+        </fieldset>
+
+        <fieldset>
+            <legend>Range</legend>
+            <input type="range" min="0" max="64" list="myrange">
+            <datalist id="myrange">
+                <option>0</option>
+                <option>2</option>
+                <option>4</option>
+                <option>8</option>
+                <option>16</option>
+                <option>32</option>
+                <option>64</option>
+            </datalist>
+        </fieldset>
+        <fieldset>
+            <legend>File</legend>
+            <input type="file" />
+        </fieldset>
+
+        <fieldset>
+            <legend>Checkbox</legend>
+            <label>
+                <input type="checkbox" /> sei guelfo sì o no?
+            </label>
+        </fieldset>
+
+        <fieldset>
+            <legend>Password</legend>
+            <input type="password" />
+        </fieldset>
+
+
+
+
+
+        <fieldset>
+            <label>Select</label>
+            <select>
+                <optgroup label="Alto medioevo">
+                    <option>Regni romano-barbarici</option>
+                    <option>L'Impero bizantino</option>
+                    <option>Nascita ed espansione dell'Islam</option>
+                </optgroup>
+                <optgroup label="Basso medioevo">
+                    <option>Le crociate</option>
+                    <option>Crisi del Trecento</option>
+                    <option selected>La guerra dei cent'anni</option>
+                    <option>L'Umanesimo</option>
+                </optgroup>
+            </select>
+        </fieldset>
+    
+        <section>
+            <label>Textarea</label>
+            <textarea rows="5" cols="33">
+                Lorem ipsum
+            </textarea>
+        </section>
+    </section>
+
+
+
+    <section>
+        <h2>3. Outputs</h2>
+        <form oninput="result.value=parseInt(a.value)+parseInt(b.value)">
+            <input type="range" name="b" value="50" /> +
+            <input type="number" name="a" value="10" /> =
+            <output name="result" for="a b">60</output>
+        </form>
+        <br/>
+        <meter
+            min="0" max="100"
+            low="33" high="66" optimum="80"
+            value="80">
+        </meter>
+        <br/>
+        <progress max="100" value="70"></progress>
+    </section>
+    </body>
+</html>
