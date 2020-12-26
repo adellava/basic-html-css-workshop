@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8">
+    <title>Multimedia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+
+    <h1>Multimedia</h1>
+
+
+    <section style="width: 100%">
+      <h2>
+        1. Immagini
+      </h2>
+      <!--
+        Quali problemi si incontrano nelle immagini responsive:
+        1. come adattare i formati e dei contenuti, come far vedere i dettagli importanti su mobile di un immagine landscape?
+        2. come gestire le immagini per gli schermi più grandi e servire l'immagine giusta?
+        3. come evitare quindi sprechi di banda?
+      -->
+      <p>adattare il formato allo schermo</p>
+      <picture>
+        <source media="(max-width: 799px)" srcset="./assets/duomo-di-siena-mobile.jpeg">
+        <source media="(min-width: 800px)" srcset="./assets/duomo-di-siena.jpeg">
+        <img loading="lazy" style="width: 70%" src="./assets/duomo-di-siena.jpeg" alt="Duomo di Siena">
+      </picture>
+    </section>
+
+    <section>
+      <h2>
+        2. Audio
+      </h2>
+      <audio width="460" src="./assets/sarabande.mp3" controls="true" loop="true" preload="auto" volume="0.8">
+        Il tuo browser non supporta l'elemento <code>audio</code>.
+      </audio>
+      <!--
+        https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio
+      -->
+    </section>
+
+    <section>
+      <h2>
+        3. Video
+      </h2>
+      <video controls width="460" src="./assets/barry-lyndon.mp4" type="video/mp4" preload="metadata">
+        Il tuo browser non supporta l'elemento <code>video</code>.
+        <track default kind="subtitles" src="./assets/sarabande-it.vtt" srclang="it" label="Italiano">
+        <track kind="subtitles" src="./assets/sarabande-en.vtt" srclang="en" label="English">
+      </video>
+      <!--
+        https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video
+      -->
+    </section>
+
+    <section>
+      <h2>
+        4. Embedded
+      </h2>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d41536.70352460398!2d16.84020408022492!3d49.150538505073015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4712e629629a7a8d%3A0x13a5b1dfd052810a!2s684%2001%20Slavkov%20u%20Brna%2C%20Repubblica%20Ceca!5e1!3m2!1sit!2sit!4v1608973953499!5m2!1sit!2sit" width="600" height="450" frameborder="0" style="border:0;"></iframe>
+    </section>
+    <!--
+      https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe
+
+      NB sandbox
+    -->
+  </body>
+</html>
