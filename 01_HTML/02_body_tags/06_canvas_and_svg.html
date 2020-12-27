@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="utf-8">
+        <title>Canvas & SVG</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <script>
+        // thx Jack Rugile jackrugile => https://codepen.io/jackrugile/pen/BvLHg
+        window.addEventListener('DOMContentLoaded', () => {
+            var c = document.getElementById('c'),
+            ctx = c.getContext('2d'),
+            cw = c.width = 450,
+            ch = c.height = 200,
+            points = [],
+            tick = 0,
+            opt = {
+                count: 5,
+                range: {
+                    x: 20,
+                    y: 80
+                },
+                duration: {
+                    min: 20,
+                    max: 40
+                },
+                thickness: 10,
+                strokeColor: '#444',
+                level: .35,
+                curved: true
+            },
+            rand = function(min, max){
+                return Math.floor( (Math.random() * (max - min + 1) ) + min);
+            },
+            ease = function (t, b, c, d) {
+                if ((t/=d/2) < 1) return c/2*t*t + b;
+                return -c/2 * ((--t)*(t-2) - 1) + b;
+            };
+
+            ctx.lineJoin = 'round';
+            ctx.lineWidth = opt.thickness;
+            ctx.strokeStyle = opt.strokeColor;
+            ctx.font = "20px Georgia";
+
+            var Point = function(config){
+                this.anchorX = config.x;
+                this.anchorY = config.y;
+                this.x = config.x;
+                this.y = config.y;
+                this.setTarget();  
+            };
+
+            Point.prototype.setTarget = function(){
+                this.initialX = this.x;
+                this.initialY = this.y;
+                this.targetX = this.anchorX + rand(0, opt.range.x * 2) - opt.range.x;
+                this.targetY = this.anchorY + rand(0, opt.range.y * 2) - opt.range.y;
+                this.tick = 0;
+                this.duration = rand(opt.duration.min, opt.duration.max);
+            }
+            
+            Point.prototype.update = function(){
+                var dx = this.targetX - this.x;
+                var dy = this.targetY - this.y;
+                var dist = Math.sqrt(dx * dx + dy * dy);
+                
+                if(Math.abs(dist) <= 0){
+                    this.setTarget();
+                } else {       
+                    var t = this.tick;
+                    var b = this.initialY;
+                    var c = this.targetY - this.initialY;
+                    var d = this.duration;
+                    this.y = ease(t, b, c, d);
+                    
+                    b = this.initialX;
+                    c = this.targetX - this.initialX;
+                    d = this.duration;
+                    this.x = ease(t, b, c, d);
+                
+                    this.tick++;
+                }
+            };
+                
+            Point.prototype.render = function(){
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 3, 0, Math.PI * 2, false);
+                ctx.fillStyle = '#000';
+                ctx.fill();
+            };
+
+            var updatePoints = function(){
+                var i = points.length;
+                while(i--){
+                    points[i].update();
+                }
+            };
+
+            var renderPoints = function(){
+                var i = points.length;
+                while(i--){
+                    points[i].render();
+                }
+            };
+
+            var renderShape = function(){
+                ctx.beginPath();
+                var pointCount = points.length;
+                ctx.moveTo(points[0].x, points[0].y);	  
+                var i;
+                for (i = 0; i < pointCount - 1; i++) {
+                    var c = (points[i].x + points[i + 1].x) / 2;
+                    var d = (points[i].y + points[i + 1].y) / 2;
+                    ctx.quadraticCurveTo(points[i].x, points[i].y, c, d);
+                }
+                ctx.lineTo(-opt.range.x - opt.thickness, ch + opt.thickness);
+                ctx.lineTo(cw + opt.range.x + opt.thickness, ch + opt.thickness);
+                ctx.closePath();   
+                ctx.fillStyle = 'hsl('+(tick/2)+', 80%, 60%)';
+                ctx.fill();  
+                ctx.stroke();
+            };
+
+            var clear = function(){
+                ctx.clearRect(0, 0, cw, ch);
+            };
+
+            var loop = function(){
+                window.requestAnimationFrame(loop, c);
+                tick++;
+                clear();
+                updatePoints();
+                renderShape();
+                ctx.fillText("Verso la Battaglia di Lepanto!", 10, 50);
+            };
+
+            var i = opt.count + 2;
+            var spacing = (cw + (opt.range.x * 2)) / (opt.count-1);
+            while(i--){
+                points.push(new Point({
+                    x: (spacing * (i - 1)) - opt.range.x,
+                    y: ch - (ch * opt.level)
+                }));
+            }
+            loop();
+        });
+    </script>
+    <style>
+        .preserveAspectRatio svg {
+            fill: red;
+        }
+        .preserveAspectRatio rect {
+            fill: gray;
+        }
+    </style>
+    <body>
+
+        <h1>Canvas & SVG</h1>
+
+        <section>
+            <h2>1. Canvas</h2>
+            <canvas id="c"></canvas>
+        </section>
+
+        <section>
+            <h2>2. SVG</h2>
+
+            <!-- nb 
+                viewBox: min-x, min-y, width, height
+            -->
+            <svg style="width: 500px;" ppreserveAspectRatio="none" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg" stroke="red" fill="grey">
+                <rect x="10" y="10"  width="50" height="70"/>
+                <rect x="80" y="10" width="80" height="40" />
+                
+                <svg viewBox="0 0 10 10" x="200" width="100">
+                    <circle cx="5" cy="5" r="4" />
+                </svg>
+            </svg>
+
+
+            <br/>
+            <svg class="preserveAspectRatio" style="width: 500px;" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                   <path id="path" d="M 10,30
+                   A 20,20 0,0,1 50,30
+                   A 20,20 0,0,1 90,30
+                   Q 90,60 50,90
+                   Q 10,60 10,30 z" />
+                </defs>
+              
+                <!-- (width>height) meet (ovvero quello che in CSS è content in background-size: x;) -->
+                <svg preserveAspectRatio="xMidYMid meet"  x="0"   y="0"  viewBox="0 0 100 100" width="20"  height="10"><rect x="0" y="0" width="100%" height="100%"/><use href="#path" /></svg>
+                <svg preserveAspectRatio="xMinYMid meet"  x="25"  y="0"  viewBox="0 0 100 100" width="20"  height="10"><rect x="0" y="0" width="100%" height="100%"/><use href="#path" /></svg>
+                <svg preserveAspectRatio="xMaxYMid meet"  x="50"  y="0"  viewBox="0 0 100 100" width="20"  height="10"><rect x="0" y="0" width="100%" height="100%"/><use href="#path" /></svg>
+              
+                <!-- (width>height) slice (ovvero quello che in CSS è cover in background-size: x;) -->
+                <svg preserveAspectRatio="xMidYMin slice" x="0"   y="15" viewBox="0 0 100 100" width="20"  height="10"><rect x="0" y="0" width="100%" height="100%"/><use href="#path" /></svg>
+                <svg preserveAspectRatio="xMidYMid slice" x="25"  y="15" viewBox="0 0 100 100" width="20"  height="10"><rect x="0" y="0" width="100%" height="100%"/><use href="#path" /></svg>
+                <svg preserveAspectRatio="xMidYMax slice" x="50"  y="15" viewBox="0 0 100 100" width="20"  height="10"><rect x="0" y="0" width="100%" height="100%"/><use href="#path" /></svg>
+              
+                <!-- (width<height) meet (ovvero quello che in CSS è content in background-size: x;) -->
+                <svg preserveAspectRatio="xMidYMin meet"  x="75"  y="0"  viewBox="0 0 100 100" width="10"  height="25"><rect x="0" y="0" width="100%" height="100%"/><use href="#path" /></svg>
+                <svg preserveAspectRatio="xMidYMid meet"  x="90"  y="0"  viewBox="0 0 100 100" width="10"  height="25"><rect x="0" y="0" width="100%" height="100%"/><use href="#path" /></svg>
+                <svg preserveAspectRatio="xMidYMax meet"  x="105" y="0"  viewBox="0 0 100 100" width="10"  height="25"><rect x="0" y="0" width="100%" height="100%"/><use href="#path" /></svg>
+              
+                <!-- (width<height) slice (ovvero quello che in CSS è cover in background-size: x;) -->
+                <svg preserveAspectRatio="xMinYMid slice" x="120" y="0"  viewBox="0 0 100 100" width="10"  height="25"><rect x="0" y="0" width="100%" height="100%"/><use href="#path" /></svg>
+                <svg preserveAspectRatio="xMidYMid slice" x="135" y="0"  viewBox="0 0 100 100" width="10"  height="25"><rect x="0" y="0" width="100%" height="100%"/><use href="#path" /></svg>
+                <svg preserveAspectRatio="xMaxYMid slice" x="150" y="0"  viewBox="0 0 100 100" width="10"  height="25"><rect x="0" y="0" width="100%" height="100%"/><use href="#path" /></svg>
+              
+                <!-- none -->
+                <svg preserveAspectRatio="none"           x="0"   y="30" viewBox="0 0 100 100" width="160" height="60"><rect x="0" y="0" width="100%" height="100%"/><use href="#path" /></svg>
+              </svg>
+        </section>
+
+    </body>
+</html>

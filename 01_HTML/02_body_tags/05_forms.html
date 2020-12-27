@@ -5,7 +5,7 @@
         <title>Form</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
-    <script defer>
+    <script>
         const onSubmit = (event) => {
             event.preventDefault();
             const form = new FormData(event.target);
@@ -268,7 +268,7 @@
             <p>Sono una dialog Ghibellina.</p>
             <form method="dialog" onsubmit="return onSubmitDialog(event)">
                 <input style="width: 400px" required placeholder="Inserisci il tuo nome Ghibellino (es. 'Guglielmino degli Ubertini')" name="nome-ghibellino">
-                <button>Annulla</button>
+                <button onclick="window.dialog.close();">Annulla</button>
                 <button type="submit">Invia</button>
             </form>
         </dialog>
