@@ -68,17 +68,17 @@
             <fieldset>
                 <legend>Partito</legend>
                 <label>
-                    <input type="radio" name="ghibellini">
+                    <input type="radio" name="partito" value="ghibellini">
                     Ghibellini
                 </label>
                 <br/>
                 <label>
-                    <input type="radio"  name="guelfibianchi" checked>
+                    <input type="radio"  name="partito" value="guelfibianchi" checked>
                     Guelfi Bianchi
                 </label>
                 <br/>
                 <label>
-                    <input type="radio" name="guelfineri">
+                    <input type="radio" name="partito" value="guelfineri">
                     Guelfi Neri
                 </label>
             </fieldset>
@@ -170,17 +170,17 @@
         <fieldset>
             <legend>Radio</legend>
             <label>
-                <input type="radio" name="ghibellini" disabled>
+                <input type="radio" name="partito" value="ghibellini" disabled>
                 Ghibellini
             </label>
             <br/>
             <label>
-                <input type="radio"  name="guelfibianchi" checked>
+                <input type="radio"  name="partito" value="guelfibianchi" checked>
                 Guelfi Bianchi
             </label>
             <br/>
             <label>
-                <input type="radio" name="guelfineri">
+                <input type="radio" name="partito" value="guelfineri">
                 Guelfi Neri
             </label>
         </fieldset>
@@ -223,15 +223,15 @@
             <legend>Select</legend>
             <select>
                 <optgroup label="Alto medioevo">
-                    <option>Regni romano-barbarici</option>
-                    <option>L'Impero bizantino</option>
-                    <option>Nascita ed espansione dell'Islam</option>
+                    <option value="1">Regni romano-barbarici</option>
+                    <option value="2">L'Impero bizantino</option>
+                    <option value="3">Nascita ed espansione dell'Islam</option>
                 </optgroup>
                 <optgroup label="Basso medioevo">
-                    <option>Le crociate</option>
-                    <option>Crisi del Trecento</option>
-                    <option selected>La guerra dei cent'anni</option>
-                    <option>L'Umanesimo</option>
+                    <option value="4">Le crociate</option>
+                    <option value="5">Crisi del Trecento</option>
+                    <option value="6" selected>La guerra dei cent'anni</option>
+                    <option value="7">L'Umanesimo</option>
                 </optgroup>
             </select>
         </fieldset>
