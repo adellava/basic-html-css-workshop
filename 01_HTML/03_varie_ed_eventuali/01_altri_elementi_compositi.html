@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="utf-8">
+        <title>Elementi compositi meno conosciuti</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script>
+            function creaDaTemplate() { 
+                var t = document.getElementsByTagName("template")[0]; 
+                var clone = t.content.cloneNode(true); // https://developer.mozilla.org/en-US/docs/Web/API/Node/cloneNode
+                document.body.appendChild(clone); 
+            };
+        </script>
+    </head>
+    <body>
+
+        <h1>Elementi compositi meno conosciuti</h1>
+
+        <section>
+            <h2>1. Figure</h2>
+            <figure>
+                <img style="max-height: 200px;" src="./assets/roberto-il-guiscardo.jpg" alt="Roberto d'Altavilla, detto il Guiscardo">
+                <figcaption>Roberto d'Altavilla, detto il Guiscardo</figcaption>
+            </figure>
+        </section>
+
+        <section>
+            <h2>2. Accordion</h2>
+            <details>
+                <summary>Roberto d'Altavilla, detto il Guiscardo</summary>
+                <p>
+                    Fu un condottiero normanno.<br/>
+                    Sesto figlio di Tancredi (conte di Hauteville-la-Guichard) e primo della sua seconda moglie Fresenda (o Fressenda, figlia di Riccardo I di Normandia, detto Riccardo Senza Paura), divenne Conte di Puglia e Calabria alla morte del fratello Umfredo (1057). In seguito, nel 1059, fu investito da papa Niccolò II del titolo di Duca di Puglia e Calabria e Signore di Sicilia.
+                </p>
+            </details>
+            <details>
+                <summary>Ruggero II</summary>
+                <p>
+                    Conosciuto anche come Ruggero il normanno, figlio e successore di Ruggero I di Sicilia della dinastia degli Altavilla, fu conte di Sicilia dal 1105, duca di Puglia dal 1127 e primo re di Sicilia dal 1130 al 1154, divenendo noto come il fondatore del Regnum Siciliæ indipendente. Dopo la nascita del regno, in virtù delle conquiste sulla costa africana, acquisì anche il titolo di re d'Africa.
+                </p>
+            </details>
+            <details>
+                <summary>Costanza d'Altavilla</summary>
+                Ultima regina della Casa d'Altavilla, è stata regina sovrana di Sicilia in quanto erede designata del nipote Guglielmo II di Sicilia e reggente del medesimo regno per conto del figlio Federico II di Svevia e imperatrice consorte.
+            </details>
+        </section>
+
+
+        <section>
+            <h2>3. Template</h2>
+            <template> 
+                Sacro <em>Romano Impero</em>
+            </template> 
+            <button onclick="creaDaTemplate()">Dillo Ancora</button>
+        </section>
+
+    </body>
+</html>
+

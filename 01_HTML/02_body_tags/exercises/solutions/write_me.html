@@ -63,89 +63,90 @@
         </aside>
 
         
+        <main>
 
+            <section>
+                <h2>Dichiarazione di Guerra</h2>
+                <button onclick="window.dialog.showModal();">aiuto compilazione</button>
+                <form onsubmit="return onSubmit(event);">
+                    <fieldset>
+                        <legend>Dati Principali</legend>
+                        <label>
+                            Nome della Guerra (*)
+                            <input required name="nomeOperazione" type="text" minlength="3" maxlength="50"/>
+                        </label>
+                        <br/>
+                        <label>
+                            Data e Ora di Partenza
+                            <input name="data" type="datetime-local" />
+                        </label>
+                        <br/>
+                        <label>
+                            Sfidante (*) <small>(può essere solo un Ghibellino: Arezzo, Pisa, Imperatore)</small>
+                            <input required name="sfidante" type="text" list="sfidante" pattern="[Pp]isa|[Aa]rezzo|[Ii]mperatore" />
+                            <datalist id="sfidante">
+                                <option>Pisa</option>
+                                <option>Arezzo</option>
+                                <option>Imperatore</option>
+                            </datalist>
+                        </label>
+                        <br/>
+                        <label>
+                            Costi Previsti (in fiorini)
+                            <input name="costi" type="number"  min="0" max="999999" step="0.1"/>
+                        </label>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Esercito</legend>
+                        <label>
+                            assoldiamo mercenari?
+                            <input type="checkbox" name="has-mercenari">
+                        </label>
+                        <br/>
+                        <label>
+                            Alleati Coinvolti
+                            <select multiple name="alleati">
+                                <option value="1">Lucca</option>
+                                <option value="2">Pistoia</option>
+                                <option value="3">Siena</option>
+                            </select>
+                        </label>
+                        <br/>
+                        <label>
+                            Numero di Cavalieri (*)
+                            <input required name="cavalieri" type="number"  min="0" max="5000" step="1"/>
+                        </label>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Logististica (*)</legend>
+                        <label>
+                            <input type="radio" name="logistica" required>
+                            passiamo per il Casentino
+                        </label>
+                        <br/>
+                        <label>
+                            <input type="radio"  name="logistica">
+                            passimo per il Valdarno
+                        </label>
+                        <br/>
+                        <label>
+                            <input type="radio" name="logistica">
+                            passiamo per la Francigena
+                        </label>
+                        <br/>
+                        <label>
+                            <input type="radio" name="logistica">
+                            passiamo per il Chianti
+                        </label>
+                    </fieldset>
+                    <menu>
+                        <button type="submit"  autofocus="true">Invia</button>
+                        <button type="reset"  autofocus="true">Reset</button>
+                    </menu>
+                </form>
+            </section>
 
-
-        <section>
-            <h2>Dichiarazione di Guerra</h2>
-            <button onclick="window.dialog.showModal();">aiuto compilazione</button>
-            <form onsubmit="return onSubmit(event);">
-                <fieldset>
-                    <legend>Dati Principali</legend>
-                    <label>
-                        Nome della Guerra (*)
-                        <input required name="nomeOperazione" type="text" minlength="3" maxlength="50"/>
-                    </label>
-                    <br/>
-                    <label>
-                        Data e Ora di Partenza
-                        <input name="data" type="datetime-local" />
-                    </label>
-                    <br/>
-                    <label>
-                        Sfidante (*) <small>(può essere solo un Ghibellino: Arezzo, Pisa, Imperatore)</small>
-                        <input required name="sfidante" type="text" list="sfidante" pattern="[Pp]isa|[Aa]rezzo|[Ii]mperatore" />
-                        <datalist id="sfidante">
-                            <option>Pisa</option>
-                            <option>Arezzo</option>
-                            <option>Imperatore</option>
-                        </datalist>
-                    </label>
-                    <br/>
-                    <label>
-                        Costi Previsti (in fiorini)
-                        <input name="costi" type="number"  min="0" max="999999" step="0.1"/>
-                    </label>
-                </fieldset>
-                <fieldset>
-                    <legend>Esercito</legend>
-                    <label>
-                        assoldiamo mercenari?
-                        <input type="checkbox" name="has-mercenari">
-                    </label>
-                    <br/>
-                    <label>
-                        Alleati Coinvolti
-                        <select multiple name="alleati">
-                            <option value="1">Lucca</option>
-                            <option value="2">Pistoia</option>
-                            <option value="3">Siena</option>
-                        </select>
-                    </label>
-                    <br/>
-                    <label>
-                        Numero di Cavalieri (*)
-                        <input required name="cavalieri" type="number"  min="0" max="5000" step="1"/>
-                    </label>
-                </fieldset>
-                <fieldset>
-                    <legend>Logististica (*)</legend>
-                    <label>
-                        <input type="radio" name="logistica" required>
-                        passiamo per il Casentino
-                    </label>
-                    <br/>
-                    <label>
-                        <input type="radio"  name="logistica">
-                        passimo per il Valdarno
-                    </label>
-                    <br/>
-                    <label>
-                        <input type="radio" name="logistica">
-                        passiamo per la Francigena
-                    </label>
-                    <br/>
-                    <label>
-                        <input type="radio" name="logistica">
-                        passiamo per il Chianti
-                    </label>
-                </fieldset>
-                <menu>
-                    <button type="submit"  autofocus="true">Invia</button>
-                    <button type="reset"  autofocus="true">Reset</button>
-                </menu>
-            </form>
-        </section>
+        </main>
 
 
         <footer>
