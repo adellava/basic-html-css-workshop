@@ -1,0 +1,24 @@
+{
+  "name": "basic_html_css",
+  "description": "html&css for dummies",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server ./ -c-1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:adellava/basic-html-css-workshop.git"
+  },
+  "keywords": [
+    "html",
+    "css",
+    "course",
+    "learning"
+  ],
+  "author": "Antonio Dell'Ava",
+  "license": "unlicensed",
+  "devDependencies": {
+    "http-server": "0.12.3"
+  }
+}
