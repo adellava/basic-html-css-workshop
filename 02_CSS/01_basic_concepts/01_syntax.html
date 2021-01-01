@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="utf-8">
+        <title>CSS Sintassi e Scritture</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            .codeexample {
+                background-color: #eee;
+                padding: 5px;
+                border-left: 4px solid darkslateblue;
+                padding-left: 20px;
+            }
+            /* :root { --color: blue; }
+            div { --color: green; }
+            #alert { --color: red; }
+            * { color: var(--color); } */
+
+            /* * {
+                color: blue;
+            }
+
+            h1 {
+                color: indigo;
+            }
+*/
+
+        </style>
+    </head>
+    <body>
+
+        <h1>CSS Sintassi e Scritture</h1>
+
+        <section>
+
+            <h2>1. Sintassi Base</h2>
+
+            <p>Tutto il il codice CSS è formato da regole di stile descrittive. Ogni regola è composta da uno o più selettori e di proprietà.</p>
+
+            <pre class="codeexample">
+                <code>
+selettore1, selettore2 {
+    // lista di proprietà che il codice attribuisce ai selettori
+    // ogni proprietà segue la seguente sintassi
+    // "nome-proprieta: valore;"
+    // meta esempi
+    colore: rosso;
+    bordo: 1px tratteggiato nero;
+    sfondo: grigio;
+}
+                </code>
+            </pre>
+
+            <p><em>esempio</em></p>
+
+            <pre class="codeexample">
+                <code>
+header {
+    color: blue;
+}
+                </code>
+            </pre>
+            <style>
+                header {
+                    color: blue;
+                }  
+            </style>
+
+            <header>
+                Mio Header
+            </header>
+
+        </section>
+
+        <section>
+            <h2>2. Selettori</h2>
+
+            <p>Ogni selettore individua una parte di DOM da regolare. Si può fare un selettore in diversi modi:</p>
+            <style>
+            /* selettore Universale */
+            /* * {
+                color: black;
+            } */
+
+            /* selettori di tipo */
+            li {
+                color: purple;
+            }
+
+            /* selettori di attributo */
+            [data-mio-attributo] {
+                color: darkcyan;
+            }
+
+            /* selettore di classe */
+            .miaclasse {
+                color: blue;
+            }
+
+            /* selettore id */
+            #mioid {
+                color: coral;
+            }
+            </style>
+            <ol>
+                <li>selettore di tipo <code>&lt;li&gt;</code></li>
+                <li data-mio-attributo>selettore di attributo <code>&lt;li data-mio-attributo &gt;</code></li>
+                <li data-mio-attributo class="miaclasse">selettore di classe <code>&lt;li class="miaclasse" &gt;</code></li>
+                <li data-mio-attributo class="miaclasse" id="mioid">selettore di id <code>&lt;li id="mioid" &gt;</code> (NB ogni id è unico all'interno della pagina)</li>
+            </ol>
+
+            <p>
+                NB => 0. selettore universale <code>*</code> da usare con estrema parsimonia
+            </p>
+
+
+            <h3>2.1 Selettori combinati</h3>
+            <style>
+                /* elemento figlio */
+                .mialista li {
+                    color: black;
+                }
+                .miaclasse2 code {
+                    color: red;
+                }
+
+                /* elemento figlio diretto */
+                .miaclasse2 > code {
+                    color: teal;
+                }
+
+                /* elemento adiacente */
+                .mialista ~ .mianota {
+                    color: brown;
+                }
+
+                /* elemento subito adiacente */
+                .mialista + .mianota {
+                    color: purple;
+                }
+
+
+            </style>
+            <div>
+                <p class="mianota">si possono combinari due selettori o più selettori con:</p>
+                <ol class="mialista">
+                    <li class="miaclasse2">elementi <strong>figli</strong><code>' '</code>, esempio <code>.miaclasse2 code </code></span></li>
+                    <li class="miaclasse2">elementi <strong>figli diretti</strong><code>' > '</code>, esempio <span><code>.miaclasse2 > code </code></span></li>
+                    <li class="miaclasse2">elementi <strong>adiacenti</strong><code>' ~ '</code>, esempio <code>.mialista ~ .mianota</code></li>
+                    <li class="miaclasse2">elementi <strong>subito adiacenti</strong><code>' + '</code>, esempio <code>.mialista + .mianota</code></li>
+                </ol>
+                <p class="mianota">
+                    NB Coi selettori combinati è facile scrivere codice poco leggibile e mantenibile in quanto non è sempre evidente il grado di specificità.
+                </p>
+                <p class="mianota">
+                    E' bene usarli con attenzione.
+                </p>
+            </div>
+
+
+            <h3>2.2 Specificità dei Selettori</h3>
+
+
+            <p>In caso di conflitto fra regole di stile vince quella con specificità più alta</p>
+            <p><em>la specificità è un numero calcolato in base al tipo di selettori usati. Vince il selettore col numero più alto</em></p>
+            <p>come si calcola?</p>
+            <ul>
+                <li>+1 per ogni selettore di elemento</li>
+                <li>+10 per ogni selettore di classe</li>
+                <li>+100 per ogni selettore id</li>
+                <li>1000 per tutte le proprietà espresse in line</li>
+            </ul>
+
+
+            <p>
+                esempi:<br/>
+                <code>.miaclasse</code> = 10<br/>
+                <code>.miaclasse elemento</code> = 11<br/>
+                <code>.contenitore .miaclasse</code> = 20<br/>
+                <code>#contenitore .miaclasse</code> = 110<br/>
+            </p>
+
+            <p>
+                <strong>è un qualcosa che può generare problemi se mal gestito? spoiler: sì</strong>
+                <br/> esempio di bad smell:
+            </p>
+            <div class="codeexample">
+                <pre>
+                    <code>
+.testo {
+    font-size: 13px;
+    font-style: italic;
+    text-decoration: underline;
+}
+
+.contenitore {
+    border: 1px solid red;
+    padding: 10px;
+    background-color: #ddd;
+}
+
+.contenitore .testo {
+    font-size: 9px;
+    text-decoration: none;
+}
+
+#testo-speciale {
+    font-size: 24px;
+    text-decoration: overline;
+}
+                    </code>
+                </pre>
+                <style>
+                    .testo {
+                        font-size: 13px;
+                        font-style: italic;
+                        text-decoration: underline;
+                    }
+
+                    .contenitore {
+                        border: 1px solid red;
+                        padding: 10px;
+                        background-color: #ddd;
+                    }
+
+                    .contenitore .testo {
+                        font-size: 9px;
+                        text-decoration: none;
+                    }
+
+                    #testo-speciale {
+                        font-size: 24px;
+                        text-decoration: overline;
+                    }
+                </style>
+
+            </div>
+
+            <div style="padding: 5px;">
+
+                <p class="testo">
+                    testo con classe <code>.testo</code>
+                </p>
+
+                <div class="contenitore">
+
+                    <p class="testo">
+                        testo con classe <code>.testo</code> dentro <code>.contenitore</code>
+                    </p>
+                    <p class="testo">
+                        testo con classe <code>.testo</code> dentro <code>.contenitore</code>
+                    </p>
+                    <p id="testo-speciale" class="testo" style="text-decoration: green wavy underline;">
+                        testo con classe <code>.testo</code>  dentro <code>.contenitore</code> <strong>ma</strong> con id <code>#testo-speciale</code> e stile in linea
+                    </p>
+                </div>
+
+            </div>
+
+
+
+            <p>per una spigazione approfondita leggere la <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Cascade_and_inheritance#Specificity_2">la documentazione</a></p>
+
+        </section>
+
+
+        <section>
+            <h2>3. Ereditarietà</h2>
+            <pre class="codeexample">
+                <code>
+.root {
+    color: blue;
+}
+#idesempio {
+    color: red;
+}
+                </code>
+            </pre>
+            <style>
+            .root {
+                color: blue;
+            }
+            #idesempio {
+                color: red;
+            }
+            </style>
+            <div class="root">
+                <p>Sono blu come mio padre!</p>
+                <p id="idesempio">
+
+                    Sono rosso perché il mio id me lo dice!
+                    <span>Sono uno span rosso pure io per l'ereditarietà!</span>
+                </p>
+            </div>
+        </section>
+
+
+        <section>
+            <h2>4. Variabili</h2>
+            <pre class="codeexample">
+                <code>
+                    
+:root { --color: blue; }
+#idesempio { --color: red; }
+
+.root {
+    color: var(--color);
+}
+#idesempio {
+    color: var(--color);
+}
+                </code>
+            </pre>
+            <style>
+
+            :root { --color: blue; }
+            #idesempio { --color: red; }
+
+            .root {
+                color: var(--color);
+            }
+            #idesempio {
+                color: var(--color);
+            }
+
+            </style>
+            <div class="root">
+                <p>Sono blu come mio padre!</p>
+                <p id="idesempio">
+
+                    Sono rosso perché il mio id me lo dice!
+                    <span>Sono uno span rosso pure io per l'ereditarietà!</span>
+                </p>
+            </div>
+        </section>
+    </body>
+</html>
