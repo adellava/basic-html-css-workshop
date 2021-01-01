@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="utf-8">
+        <title>CSS Sintassi e Scritture</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            html, body {
+                font-size: 14px;
+            }
+            .codeexample {
+                background-color: #eee;
+                padding: 5px;
+                border-left: 4px solid darkslateblue;
+                padding-left: 20px;
+            }
+            .rect {
+                background-color: darkslategrey;
+                height: auto;
+                min-height: 40px;
+                margin-bottom: 10px;
+                color: white;
+            }
+            .wrapper {
+                margin: 10px;
+                width: calc(100% - 20px);
+                background-color: #eee;
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1>Units</h1>
+
+        <section>
+
+            <h2>1. Principali unità Assolute</h2>
+
+            <style>
+                .px {
+                    width: 300px;
+                }
+                .mm {
+                    width: 300mm;
+                }
+            </style>
+            <pre>
+                <code>
+.px {
+    width: 300px;
+}
+.mm {
+    width: 300mm;  /* usato principalmente per i css di stampa */
+}
+                </code>
+            </pre>
+            <div class="wrapper">
+                <div class="rect px">sono largo 300px</div>
+                <div class="rect mm">sono largo 300mm</div>
+            </div>
+            
+        </section>
+
+        <section>
+
+            <h2>2. Principali unità Relative</h2>
+
+            <style>
+                .wrapper {
+                    font-size: 28px;
+                }
+                .perc {
+                    width: 20%; /* 20% della stessa proprietà nel padre */
+                }
+                .em {
+                    width: 5em; /* 5 volte il valore di larghezza della lettare M col font size del padre */
+                }
+                .rem {
+                    width: 5rem; /* 5 volte il valore di larghezza della lettare M col font size del root element */
+                }
+                .vw {
+                    width: 20vw; /* 20/100 del viewport width */
+                }
+                .vh {
+                    width: 20vh; /* 20/100 del viewport height */
+                }
+                .vmin {
+                    width: 20vmin; /* 20/100 del valore più piccolo tra viewport width e viewport height */
+                }
+                .vmax {
+                    width: 20vmax; /* 20/100 del valore più grande tra viewport width e viewport height */
+                }
+                .ch {
+                    width: 5ch; /* 5 volte la larghezza del primo carattere dell'elemento */
+                }
+            </style>
+            <pre>
+                <code>
+.wrapper {
+    font-size: 28px;
+}
+.perc {
+    width: 20%; /* 20% della stessa proprietà nel padre */
+}
+.em {
+    width: 5em; /* 5 volte il valore di larghezza della lettare M col font size del padre */
+}
+.rem {
+    width: 5rem; /* 5 volte il valore di larghezza della lettare M col font size del root element */
+}
+.vw {
+    width: 20vw; /* 20/100 del viewport width */
+}
+.vh {
+    width: 20vh; /* 20/100 del viewport height */
+}
+.vmin {
+    width: 20vmin; /* 20/100 del valore più piccolo tra viewport width e viewport height */
+}
+.vmax {
+    width: 20vmax; /* 20/100 del valore più grande tra viewport width e viewport height */
+}
+.ch {
+    width: 5ch; /* 5 volte la larghezza del carattere "0" */
+}
+
+NB l'uso di calc in .wrapper => width: calc(100% - 20px);
+                </code>
+            </pre>
+            <div class="wrapper">
+                <div class="rect perc">sono largo 20%</div>
+                <div class="rect em">sono largo 5em</div>
+                <div class="rect rem">sono largo 5rem</div>
+                <div class="rect vw">sono largo 20vw</div>
+                <div class="rect vh">sono largo 20vh</div>
+                <div class="rect vmin">sono largo 20vmin</div>
+                <div class="rect vmax">sono largo 20vmax</div>
+                <div class="rect ch">00000 sono largo 5ch</div>
+            </div>
+            
+        </section>
+    </body>
+</html>
