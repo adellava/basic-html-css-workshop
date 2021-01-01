@@ -11,20 +11,6 @@
                 border-left: 4px solid darkslateblue;
                 padding-left: 20px;
             }
-            /* :root { --color: blue; }
-            div { --color: green; }
-            #alert { --color: red; }
-            * { color: var(--color); } */
-
-            /* * {
-                color: blue;
-            }
-
-            h1 {
-                color: indigo;
-            }
-*/
-
         </style>
     </head>
     <body>
@@ -82,8 +68,8 @@ header {
                 color: black;
             } */
 
-            /* selettori di tipo */
-            li {
+            /* selettori di tipo elemento */
+            article {
                 color: purple;
             }
 
@@ -102,11 +88,41 @@ header {
                 color: coral;
             }
             </style>
+            <pre class="codeexample">
+                <code>
+/* selettori di tipo elemento */
+article {
+    color: purple;
+}
+
+/* selettori di attributo */
+[data-mio-attributo] {
+    color: darkcyan;
+}
+
+/* selettore di classe */
+.miaclasse {
+    color: blue;
+}
+
+/* selettore id */
+#mioid {
+    color: coral;
+}
+                </code>
+            </pre>
+
+            <article><code>&lt;article /&gt;</code></article>
+            <div data-mio-attributo><code>&lt;div data-mio-attributo &gt;</code>attributo<code>&lt;/div&gt;</code></div>         
+            <div class="miaclasse"><code>&lt;div class="miaclasse" &gt;</code>classe<code>&lt;/div&gt;</code></div>         
+            <div id="mioid"><code>&lt;div id="mioid" &gt;</code>id<code>&lt;/div&gt;</code></div>         
+
+
             <ol>
-                <li>selettore di tipo <code>&lt;li&gt;</code></li>
-                <li data-mio-attributo>selettore di attributo <code>&lt;li data-mio-attributo &gt;</code></li>
-                <li data-mio-attributo class="miaclasse">selettore di classe <code>&lt;li class="miaclasse" &gt;</code></li>
-                <li data-mio-attributo class="miaclasse" id="mioid">selettore di id <code>&lt;li id="mioid" &gt;</code> (NB ogni id è unico all'interno della pagina)</li>
+                <li>selettore di tipo <code>&lt;elemento&gt;</code></li>
+                <li>selettore di attributo <code>&lt;li &gt;</code></li>
+                <li>selettore di classe <code>&lt;li class="miaclasse" &gt;</code></li>
+                <li>selettore di id <code>&lt;li id="mioid" &gt;</code> (NB ogni id è unico all'interno della pagina)</li>
             </ol>
 
             <p>
@@ -117,15 +133,12 @@ header {
             <h3>2.1 Selettori combinati</h3>
             <style>
                 /* elemento figlio */
-                .mialista li {
-                    color: black;
-                }
-                .miaclasse2 code {
+                .mialista .classefiglia {
                     color: red;
                 }
 
                 /* elemento figlio diretto */
-                .miaclasse2 > code {
+                .mialista > .classefiglia {
                     color: teal;
                 }
 
@@ -139,23 +152,70 @@ header {
                     color: purple;
                 }
 
-
             </style>
+
             <div>
-                <p class="mianota">si possono combinari due selettori o più selettori con:</p>
+                <p>si possono combinari due selettori o più selettori con:</p>
+            </div>
+            <pre class="codeexample">
+                <code>
+/* elemento figlio */
+.mialista .classefiglia {
+    color: red;
+}
+
+/* elemento figlio diretto */
+.mialista > .classefiglia {
+    color: teal;
+}
+
+/* elemento adiacente */
+.mialista ~ .mianota {
+    color: brown;
+}
+
+/* elemento subito adiacente */
+.mialista + .mianota {
+    color: purple;
+}
+                </code>
+            </pre>
+            <div>
+                <p class="mianota">
+                    <code>&lt;p class="mianota" &gt;</code>elemento precedente<code>&lt;/p&gt;</code>
+                </p>
                 <ol class="mialista">
-                    <li class="miaclasse2">elementi <strong>figli</strong><code>' '</code>, esempio <code>.miaclasse2 code </code></span></li>
-                    <li class="miaclasse2">elementi <strong>figli diretti</strong><code>' > '</code>, esempio <span><code>.miaclasse2 > code </code></span></li>
-                    <li class="miaclasse2">elementi <strong>adiacenti</strong><code>' ~ '</code>, esempio <code>.mialista ~ .mianota</code></li>
-                    <li class="miaclasse2">elementi <strong>subito adiacenti</strong><code>' + '</code>, esempio <code>.mialista + .mianota</code></li>
+                    <li class="classefiglia">
+                        <code>&lt;li class="classefiglia" &gt;</code> elmento di lista con la classe <code>&lt;/li&gt;</code>
+                    </li>
+                    <li>
+                        <code>&lt;li &gt;</code> elmento di lista con .classefiglia in un  <span class="classefiglia"><code>&lt;span class="classefiglia" &gt;</code>sotto elemento<code>&lt;/span&gt;</code></span> <code>&lt;/li&gt;</code>
+                    </li>
+                    <li>
+                        <code>&lt;li &gt;</code> elmento di lista senza la classe <code>&lt;/li&gt;</code>
+                    </li>
                 </ol>
                 <p class="mianota">
-                    NB Coi selettori combinati è facile scrivere codice poco leggibile e mantenibile in quanto non è sempre evidente il grado di specificità.
+                    <code>&lt;p class="mianota" &gt;</code>primo elemento successivo, subito adiacente<code>&lt;/p&gt;</code>
                 </p>
                 <p class="mianota">
-                    E' bene usarli con attenzione.
+                    <code>&lt;p class="mianota" &gt;</code>secondo elemento successivo<code>&lt;/p&gt;</code>
                 </p>
             </div>
+
+            <ol>
+                <li>elementi <strong>figli</strong><code>' '</code>, esempio <code>.mialista .classefiglia </code></span></li>
+                <li>elementi <strong>figli diretti</strong><code>' > '</code>, esempio <span><code>.mialista > .classefiglia </code></span></li>
+                <li>elementi <strong>adiacenti</strong><code>' ~ '</code>, esempio <code>.mialista ~ .mianota</code></li>
+                <li>elementi <strong>subito adiacenti</strong><code>' + '</code>, esempio <code>.mialista + .mianota</code></li>
+            </ol>
+            <p>
+                NB Coi selettori combinati è facile scrivere codice poco leggibile e mantenibile in quanto non è sempre evidente il grado di specificità.
+            </p>
+            <p>
+                E' bene usarli con attenzione.
+            </p>
+
 
 
             <h3>2.2 Specificità dei Selettori</h3>
@@ -169,6 +229,7 @@ header {
                 <li>+10 per ogni selettore di classe</li>
                 <li>+100 per ogni selettore id</li>
                 <li>1000 per tutte le proprietà espresse in line</li>
+                <li>a parità di specificità vince quello scritto per ultimo</li>
             </ul>
 
 
@@ -266,6 +327,7 @@ header {
 
         <section>
             <h2>3. Ereditarietà</h2>
+            <p>Le proprietà vengono ereditate dagli elementi figli fino a che non vengono sovrascritti</p>
             <pre class="codeexample">
                 <code>
 .root {
@@ -287,7 +349,6 @@ header {
             <div class="root">
                 <p>Sono blu come mio padre!</p>
                 <p id="idesempio">
-
                     Sono rosso perché il mio id me lo dice!
                     <span>Sono uno span rosso pure io per l'ereditarietà!</span>
                 </p>
@@ -297,6 +358,7 @@ header {
 
         <section>
             <h2>4. Variabili</h2>
+            <p>Le variabili in CSS esistono nativamente e possono essere globali o legate a un selettore</p>
             <pre class="codeexample">
                 <code>
                     
@@ -316,12 +378,13 @@ header {
             :root { --color: blue; }
             #idesempio { --color: red; }
 
-            .root {
-                color: var(--color);
-            }
             #idesempio {
                 color: var(--color);
             }
+            .root {
+                color: var(--color);
+            }
+
 
             </style>
             <div class="root">
