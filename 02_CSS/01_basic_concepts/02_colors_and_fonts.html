@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="utf-8">
+        <title>CSS Sintassi e Scritture</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            .codeexample {
+                background-color: #eee;
+                padding: 5px;
+                border-left: 4px solid darkslateblue;
+                padding-left: 20px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1>Colori & Fonts</h1>
+
+        <section>
+
+            <h2>1. Colori</h2>
+
+            <p>I colori possono essere dichiarati in diversi modi</p>
+
+            <style>
+                .default {
+                    color: green;
+                }
+                .esadecimale {
+                    color: #ff0000;
+                }
+                .rgb {
+                    color: rgb(218, 204, 15);
+                }
+                .rgba {
+                    background-color: rgba(115, 151, 60, 0.6);
+                }
+                .hsla {
+                    background-color: hsla(214, 83%, 37%, 0.3);
+                }
+            </style>
+            <pre class="codeexample">
+                <code>
+.default {
+    color: green;
+}
+.esadecimale {
+    color: #ff0000;
+}
+.rgb {
+    color: rgb(218, 204, 15);
+}
+.rgba {
+    background-color: rgba(115, 151, 60, 0.6);
+}
+.hsla {
+    background-color: hsla(214, 83%, 37%, 0.3);
+}
+                </code>
+            </pre>
+            <ol>
+                <li class="default">
+                    <code>&lt;li class="default" &gt;</code> colore con valore default <code>&lt;/li&gt;</code>
+                </li>
+                <li class="esadecimale">
+                    <code>&lt;li class="esadecimale" &gt;</code> colore con valore esadecimale <code>&lt;/li&gt;</code>
+                </li>
+                <li class="rgb">
+                    <code>&lt;li class="rgb" &gt;</code> colore con valore rgb <code>&lt;/li&gt;</code>
+                </li>
+                <li class="rgba">
+                    <code>&lt;li class="rgba" &gt;</code> colore con valore rgba <code>&lt;/li&gt;</code>
+                </li>
+                <li class="hsla">
+                    <code>&lt;li class="hsla" &gt;</code> colore con valore hsla <code>&lt;/li&gt;</code>
+                </li>
+            </ol>
+
+        </section>
+
+        <section>
+
+            <h2>2. Fonts</h2>
+            <pre class="codeexample">
+                <code>
+.graziato {
+    font-family: Times, Times New Roman, Georgia, serif;
+}
+.bastoni {
+    font-family: arial, sans-serif;
+}
+                </code>
+            </pre>
+            <style>
+                .graziato {
+                    font-family: Georgia, serif;
+                }
+                .bastoni {
+                    font-family: arial, sans-serif;
+                }
+            </style>
+            <p class="graziato">
+                <code>&lt;p class="graziato" &gt;</code>font graziato<code>&lt;/p&gt;</code>
+            </p>
+            <p class="bastoni">
+                <code>&lt;p class="bastoni" &gt;</code>font bastoni<code>&lt;/p&gt;</code>
+            </p>
+            <hr/>
+            <p><em>NB serve dare più opzioni in caso l'utente non abbia installata la prima scelta, o, in alternativa dichiarare un <code>@font-face</code></em></p>
+            <p>esempio:</p>
+            <pre class="codeexample">
+                <code>
+@font-face {
+    font-family: "Open Sans";
+    src: url("/fonts/OpenSans-Regular-webfont.woff2") format("woff2"),
+            url("/fonts/OpenSans-Regular-webfont.woff") format("woff");
+}
+                </code>
+            </pre>
+            <p><em>NBB quando importo un google font, sto importando un css che ha dichiarato il font face hostato in cdn google</em></p>
+            <p>può essere un valore perché ci semplifica il lavoro, può essere un problema se i nostri utenti lavorano sotto una rete con delle limitazioni.</p>
+            <style>
+                @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+                .roboto {font-family: 'Roboto', sans-serif;}
+            </style>
+            <pre class="codeexample">
+                <code>
+&lt;style&gt;
+    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+    .roboto {font-family: 'Roboto', sans-serif;}
+&lt;/style&gt;
+                </code>
+            </pre>
+            <p class="roboto">
+                <code>&lt;p class="roboto" &gt;</code>font roboto<code>&lt;/p&gt;</code>
+            </p>
+
+        </section>
+    </body>
+</html>
