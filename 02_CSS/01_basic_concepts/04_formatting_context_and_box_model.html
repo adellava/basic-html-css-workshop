@@ -2,7 +2,7 @@
 <html lang="it">
     <head>
         <meta charset="utf-8">
-        <title>Formatting Context & Box Model</title>
+        <title>Box Formatting Context & Box Model</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <style>
             .codeexample {
@@ -15,16 +15,35 @@
     </head>
     <body>
 
-        <h1>Formatting Context & Box Model</h1>
+        <h1>Box Formatting Context & Box Model</h1>
 
 
         <section>
             <h2>1. Formatting Context</h2>
 
             <p>
-                Il formatting context è un area di spazio dove, all'interno di un layout di un elmento block, interagiscono anche elementi di tipo float.
-                <br/> questo può portare a delle problematiche di cattiva gestione dell'overflow nel suo contenimento, come si gestisce?
+                Il formatting context è un area di spazio dove interagiscono vari tipi di elementi, può essere considerato un "mini-layout".
             </p>
+            <p>
+                Le caratteristiche di <abbr>BFC</abbr> sono:
+            </p>
+            <ol>
+                <li>contenere i floats</li>
+                <li>prevenire il <i>margin collapsing</i></li>
+                <li>escludere gli <i>external floats</i></li>
+            </ol>
+            <p>
+                Il <abbr>BFC</abbr> si crea quando:
+            </p>
+            <ol>
+                <li>root <code>html</code></li>
+                <li>elemento <code>display: flow-root;</code></li>
+                <li>elemento <code>overflow: !visible;</code></li>
+                <li>elemento <code>position: fixed;</code></li>
+                <li>elemento <code>position: absolute;</code></li>
+                <li>e altri <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Block_formatting_context" target="_blank">... vedere la documentazione</a></li>
+            </ol>
+
             <style>
                 .blockwrapper {
                     background-color: #eee;
@@ -43,12 +62,12 @@
                     display: flow-root;
                 }
                 .clear {
-    content: "."; 
-    visibility: hidden; 
-    display: block; 
-    height: 0; 
-    clear: both;
-}
+                    content: "."; 
+                    visibility: hidden; 
+                    display: block; 
+                    height: 0; 
+                    clear: both;
+                }
             </style>
     
             <pre class="codeexample">
@@ -78,40 +97,126 @@
 }
                 </code>
             </pre>
-            <div>
-                <div class="blockwrapper">
-                    <div class="floatrect"></div>
-                    Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura, ché la diritta via era smarrita.
-                </div>
-                <div class="blockwrapper">
-                    <div class="floatrect"></div>
-                    Sono nello stesso inline formatting context del primo <code>.floatrect</code> anche se sono un div block<br/>
-                    Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura, ché la diritta via era smarrita.
-                </div>
-                <div class="blockwrapper">
-                    <div class="floatrect"></div>
-                    Sono nello stesso inline formatting context del primo <code>.floatrect</code> fin che non lo chiudo con <code>.clear</code><br/>
-                    Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura, ché la diritta via era smarrita.
-                </div>
-                <div class="clear"></div>
-            </div>
 
-            <br/>
-            <br/>
+            <div class="blockwrapper">
+                <div class="floatrect"></div>
+                <p>No <abbr>BCF</abbr><br/>Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura, ché la diritta via era smarrita.</p>
+            </div>
+            <div class="blockwrapper">
+                <div class="floatrect"></div>
+                <p>No <abbr>BCF</abbr><br/>Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura, ché la diritta via era smarrita.</p>
+            </div>
+            <div class="clear"></div>
             <br/>
 
             <div class="blockwrapper overflowauto">
                 <div class="floatrect"></div>
-                Metodo overflow auto<br/>
-                Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura, ché la diritta via era smarrita.
+                <p>Metodo <code>overflow: auto;</code> per creare un BFC<br/>
+                Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura, ché la diritta via era smarrita.</p>
             </div>
             <br/>
-            <br/>
-            <br/>
+
             <div class="blockwrapper displayflowroot">
                 <div class="floatrect"></div>
-                Metodo display flow-root<br/>
-                Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura, ché la diritta via era smarrita.
+                <p>Metodo <code>display: flow-root;</code> per creare un BFC<br/>
+                Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura, ché la diritta via era smarrita.</p>
+            </div>
+
+            <br/>
+
+            <style>
+                .outer {
+                    background-color: #ccc;
+                    margin: 0 0 40px 0;
+                }
+                .rect {
+                    width: 100%;
+                    margin: 20px 0;
+                    background-color: #f00;
+                }
+                .redborder {
+                    border: 1px solid red;
+                }
+            </style>
+            <pre class="codeexample">
+                <code>
+.outer {
+    background-color: #ccc;
+    margin: 0 0 40px 0;
+}
+.rect {
+    width: 100%;
+    margin: 20px 0;
+    background-color: #f00;
+}
+                </code>
+            </pre>
+            <div class="outer">
+                <div class="rect">margin top e bottom 20px</div>
+                <div class="rect">margin top e bottom 20px</div>
+                <div class="rect">margin top e bottom 20px</div>
+            </div>
+            <div class="outer overflowauto">
+                <div class="rect">margin top e bottom 20px all'interno del <abbr>BFC</abbr></div>
+                <div class="rect">margin top e bottom 20px all'interno del <abbr>BFC</abbr></div>
+                <div class="rect">margin top e bottom 20px all'interno del <abbr>BFC</abbr></div>
+            </div>
+
+            <pre class="codeexample">
+                <code>
+.blockwrapper {
+    background-color: #eee;
+    border: 1px solid #00f;
+}
+.floatrect {
+    float: left;
+    width: 100px;
+    height: 100px;
+    background-color: #f00;
+}
+.overflowauto {
+    overflow: auto;
+}
+.redborder {
+    border: 1px solid red;
+}
+                </code>
+            </pre>
+            <div class="blockwrapper">
+                <div class="floatrect"></div>
+                <p class="redborder">
+                    No <abbr>BCF</abbr><br/>
+                    Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura, ché la diritta via era smarrita.<br/>
+                    Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura, ché la diritta via era smarrita.<br/>
+                    Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura, ché la diritta via era smarrita.<br/>
+                    Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura, ché la diritta via era smarrita.<br/>
+                    Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura, ché la diritta via era smarrita.<br/>
+                    Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura, ché la diritta via era smarrita.<br/>
+                    Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura, ché la diritta via era smarrita.<br/>
+                    Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura, ché la diritta via era smarrita.<br/>
+                    Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura, ché la diritta via era smarrita.<br/>
+                    Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura, ché la diritta via era smarrita.<br/>
+                </p>
+            </div>
+            
+            <br/>
+            
+
+            <div class="blockwrapper">
+                <div class="floatrect"></div>
+                <p class="overflowauto redborder">
+                    Metodo <code>overflow: auto;</code> per creare un BFC<br/>
+                    Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura, ché la diritta via era smarrita.<br/>
+                    Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura, ché la diritta via era smarrita.<br/>
+                    Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura, ché la diritta via era smarrita.<br/>
+                    Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura, ché la diritta via era smarrita.<br/>
+                    Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura, ché la diritta via era smarrita.<br/>
+                    Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura, ché la diritta via era smarrita.<br/>
+                    Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura, ché la diritta via era smarrita.<br/>
+                    Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura, ché la diritta via era smarrita.<br/>
+                    Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura, ché la diritta via era smarrita.<br/>
+                    Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura, ché la diritta via era smarrita.<br/>
+                </p>
             </div>
     
         </section>
