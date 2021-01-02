@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="utf-8">
+        <title>Media Query</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            .codeexample {
+                background-color: #eee;
+                padding: 5px;
+                border-left: 4px solid darkslateblue;
+                padding-left: 20px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1>Media Query</h1>
+
+
+        <p>Le media query possono porre regole di stile condizionate, ecco le principali categorie:</p>
+
+        <ul>
+            <li>
+                tipo di supporto media: <code>screen, print, speech</code>
+            </li>
+            <li>
+                grandezza del viewport: <code>max-width, min-width, max-height, min-height</code>
+            </li>
+            <li>
+                ma anche densità di pixel: <code>resolution</code>
+            </li>
+            <li>
+                orientamento e aspect ratio del viewport: <code>aspect-ratio, orientation</code>
+            </li>
+            <li>
+                capacità del device di supportare determinati comportamenti: <code>hover, any-hover, pointer, any-pointer</code> e come sperimentali <code>scripting, update</code> ancora poco supportate
+            </li>
+            <li>
+                le regole possono essere combinate con operatori logici come: <code>and ','</code> NB <code>','</code> funziona come un <code>or</code>
+            </li>
+
+            
+
+        </ul>
+
+        <p>NB per una spiegazione esaustiva leggere la <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries" target="_black">documentazione</a></p>
+
+        <style>
+            .rect {
+                background-color: darkslategrey;
+                height: auto;
+                min-height: 40px;
+                color: white;
+                margin: 0 auto;
+                width: 800px;
+                text-align: left;
+            }
+            .wrapper {
+                margin: 10px;
+                width: calc(100% - 20px);
+                background-color: #eee;
+                text-align: center;
+                padding: 20px 0;
+            }
+            @media screen and (max-width: 1024px) and (orientation: landscape) { 
+                .rect {
+                    width: 100%;
+                }
+                .wrapper {
+                    background-color: #ccc;
+                }
+            }
+        </style>
+
+        <pre class="codeexample">
+            <code>
+.rect {
+    background-color: darkslategrey;
+    height: auto;
+    min-height: 40px;
+    color: white;
+    margin: 0 auto;
+    width: 800px;
+    text-align: left;
+}
+.wrapper {
+    margin: 10px;
+    width: calc(100% - 20px);
+    background-color: #eee;
+    text-align: center;
+    padding: 20px 0;
+}
+@media screen and (max-width: 1024px) and (orientation: landscape) { 
+    .rect {
+        width: 100%;
+    }
+    .wrapper {
+        background-color: #ccc;
+    }
+}
+            </code>
+        </pre>
+
+        <div class="wrapper">
+            <div class="rect">
+                <p>solitamente sono <code>margin: 0 auto; width: 800px; text-align: left;</code></p>
+                <p>se <code>@media screen and (max-width: 1024px) and (orientation: landscape)</code> allora sono <code>width: 100%;</code></p>
+            </div>
+        </div>
+
+    </body>
+</html>
