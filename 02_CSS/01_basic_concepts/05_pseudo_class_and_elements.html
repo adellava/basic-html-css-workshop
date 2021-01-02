@@ -112,11 +112,34 @@
                     margin-top: 20px;
                 }
 
-                .mioparagrafo::before {
-                    content: "«";
-                }
-
             </style>
+
+            <pre class="codeexample">
+                <code>
+.mioparagrafo {
+    padding: 10px 20px;
+    background: #eee;
+    color: #555;
+    text-indent: 20px;
+}
+
+.mioparagrafo::first-line {
+    color: #000;
+    text-transform: uppercase;
+}
+
+.mioparagrafo::first-letter {
+    font-size: 40px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.mioparagrafo::after {
+    content: "Alessandro Barbero";
+    display: block;
+    margin-top: 20px;
+}
+                </code>
+            </pre>
             <p class="mioparagrafo">
                 Ogni uomo è complicato. Solo nei romanzi i personaggi sono coerenti ma nella realtà ogni uomo è una somma di incoerenze, e non se ne accorge affatto. Perché l'uomo non è fatto per essere riassunto in una formula ma al contrario per essere capace di tutto a seconda delle circostanze che si presenteranno; e se lo mettete di fronte alla sua incoerenza scrollerà le spalle, e dirà che aveva questa o quella ragione per agire così e non se ne darà più pensiero. Perciò la storia è complicata, ma è piatta, è un tappeto intessuto di innumerevoli fili, tanti che nessuno al mondo potrebbe contarli, ma ha soltanto due dimensioni. Non conosce la profondità.
                 La terza dimensione la diamo noi, quando la leggiamo con il nostro punto di vista.
