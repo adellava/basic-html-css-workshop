@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="utf-8">
+        <title>Formatting Context & Box Model</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            .codeexample {
+                background-color: #eee;
+                padding: 5px;
+                border-left: 4px solid darkslateblue;
+                padding-left: 20px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1>Formatting Context & Box Model</h1>
+
+
+        <section>
+            <h2>1. Formatting Context</h2>
+
+            <p>
+                Il formatting context è un area di spazio dove, all'interno di un layout di un elmento block, interagiscono anche elementi di tipo float.
+                <br/> questo può portare a delle problematiche di cattiva gestione dell'overflow nel suo contenimento, come si gestisce?
+            </p>
+            <style>
+                .blockwrapper {
+                    background-color: #eee;
+                    border: 1px solid #00f;
+                }
+                .floatrect {
+                    float: left;
+                    width: 100px;
+                    height: 100px;
+                    background-color: #f00;
+                }
+                .overflowauto {
+                    overflow: auto;
+                }
+                .displayflowroot {
+                    display: flow-root;
+                }
+                .clear {
+    content: "."; 
+    visibility: hidden; 
+    display: block; 
+    height: 0; 
+    clear: both;
+}
+            </style>
+    
+            <pre class="codeexample">
+                <code>
+.blockwrapper {
+    background-color: #eee;
+    border: 1px solid #00f;
+}
+.floatrect {
+    float: left;
+    width: 100px;
+    height: 100px;
+    background-color: #f00;
+}
+.overflowauto {
+    overflow: auto;
+}
+.displayflowroot {
+    display: flow-root;
+}
+.clear {
+    content: "."; 
+    visibility: hidden; 
+    display: block; 
+    height: 0; 
+    clear: both;
+}
+                </code>
+            </pre>
+            <div>
+                <div class="blockwrapper">
+                    <div class="floatrect"></div>
+                    Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura, ché la diritta via era smarrita.
+                </div>
+                <div class="blockwrapper">
+                    <div class="floatrect"></div>
+                    Sono nello stesso inline formatting context del primo <code>.floatrect</code> anche se sono un div block<br/>
+                    Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura, ché la diritta via era smarrita.
+                </div>
+                <div class="blockwrapper">
+                    <div class="floatrect"></div>
+                    Sono nello stesso inline formatting context del primo <code>.floatrect</code> fin che non lo chiudo con <code>.clear</code><br/>
+                    Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura, ché la diritta via era smarrita.
+                </div>
+                <div class="clear"></div>
+            </div>
+
+            <br/>
+            <br/>
+            <br/>
+
+            <div class="blockwrapper overflowauto">
+                <div class="floatrect"></div>
+                Metodo overflow auto<br/>
+                Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura, ché la diritta via era smarrita.
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <div class="blockwrapper displayflowroot">
+                <div class="floatrect"></div>
+                Metodo display flow-root<br/>
+                Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura, ché la diritta via era smarrita.
+            </div>
+    
+        </section>
+
+        <section>
+            <h2>2. Box Model</h2>
+        
+            <style>
+                .wrapper {
+                    margin: 10px;
+                    width: calc(100% - 20px);
+                    background-color: #eee;
+                    overflow: auto;
+                }
+                .box1 {
+                    background-color: #1ff;
+                    width: 200px;
+                    height: 200px;
+                    padding: 20px;
+                    margin: 20px;
+                    box-sizing: border-box;
+                }
+                .box2 {
+                    background-color: #f1f;
+                    width: 200px;
+                    height: 200px;
+                    padding: 20px;
+                    margin: 20px;
+                    box-sizing: content-box;
+                }
+                .box3 {
+                    background-color: #ff1;
+                    width: 200px;
+                    height: 200px;
+                    padding: 20px;
+                    margin: 20px;
+                }
+            </style>
+
+            <pre class="codeexample">
+                <code>
+.box1 {
+    background-color: #1ff;
+    width: 200px;
+    height: 200px;
+    padding: 20px;
+    margin: 20px;
+    box-sizing: border-box;
+}
+.box2 {
+    background-color: #f1f;
+    width: 200px;
+    height: 200px;
+    padding: 20px;
+    margin: 20px;
+    box-sizing: content-box;
+}
+.box3 {
+    background-color: #ff1;
+    width: 200px;
+    height: 200px;
+    padding: 20px;
+    margin: 20px;
+}
+                </code>
+            </pre>
+
+            <div class="wrapper">
+                <div class="box1">box1 sono larga 200px</div>
+                <div class="box2">box2 sono larga 240px</div>
+                <div class="box3">box3 sono larga 240px</div>
+            </div>
+        </section>
+    </body>
+</html>
