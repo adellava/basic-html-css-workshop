@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="utf-8">
+        <title>Pseudo class & pseudo elements</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            .codeexample {
+                background-color: #eee;
+                padding: 5px;
+                border-left: 4px solid darkslateblue;
+                padding-left: 20px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1>Pseudo class & pseudo elements</h1>
+
+
+        <section>
+            <h2>1. Pseudoclass</h2>
+
+            <p>Le psudo class permettono di scrivere regole di stile per stati di un determinato elemento. Sono validi esempi:</p>
+
+            <ul>
+                <li>la codizione di <code>:hover</code> di un link o un bottone</li>
+                <li>la codizione di <code>:invalid</code> di un campo di input</li>
+                <li>la codizione di <code>:only-child</code> rispetto a un elemento padre</li>
+                <li>[...] per leggerli tutti <a href="https://developer.mozilla.org/it/docs/Web/CSS/Pseudo-classes" target="_black">vai qui</a></li>
+            </ul>
+    
+    
+            <style>
+
+                .miobottone {
+                    border: none;
+                    margin: 0;
+                    padding: 10px 20px;
+                    min-width: 5ch;
+                    background: #eee;
+                    color: #000;
+                    line-height: 1;
+                    cursor: pointer;
+                }
+
+                .miobottone:hover {
+                    background-color: #bae8ff;
+                }
+    
+            </style>
+    
+            <pre class="codeexample">
+                <code>
+.miobottone {
+    border: none;
+    margin: 0;
+    padding: 10px 20px;
+    min-width: 5ch;
+    background: #eee;
+    color: #000;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.miobottone:hover {
+    background-color: #bae8ff;
+}
+                </code>
+            </pre>
+
+            <p>
+                <button class="miobottone">cliccami</button>
+            </p>
+    
+        </section>
+
+        <section>
+            <h2>1. Pseudoelements</h2>
+
+            <p>Gli psudo elments permettono di scrivere regole di stile per "sottoparti" di un elemento, anche non precedentemente visibili. Sono validi esempi:</p>
+            
+            <ul>
+                <li>la codizione di <code>::first-line</code> la prima linea di un elemento</li>
+                <li>le condizioni  <code>::after, ::before</code> sono un po' diversi, creano elementi che si affiancano a quello selezionato</li>
+                <li>[...] per leggerli tutti <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements" target="_black">vai qui</a></li>
+            </ul>
+
+
+            <style>
+
+                .mioparagrafo {
+                    padding: 10px 20px;
+                    background: #eee;
+                    color: #555;
+                    text-indent: 20px;
+                }
+
+                .mioparagrafo::first-line {
+                    color: #000;
+                    text-transform: uppercase;
+                }
+
+                .mioparagrafo::first-letter {
+                    font-size: 40px;
+                    font-family: Georgia, 'Times New Roman', Times, serif;
+                }
+
+                .mioparagrafo::after {
+                    content: "Alessandro Barbero";
+                    display: block;
+                    margin-top: 20px;
+                }
+
+                .mioparagrafo::before {
+                    content: "«";
+                }
+
+            </style>
+            <p class="mioparagrafo">
+                Ogni uomo è complicato. Solo nei romanzi i personaggi sono coerenti ma nella realtà ogni uomo è una somma di incoerenze, e non se ne accorge affatto. Perché l'uomo non è fatto per essere riassunto in una formula ma al contrario per essere capace di tutto a seconda delle circostanze che si presenteranno; e se lo mettete di fronte alla sua incoerenza scrollerà le spalle, e dirà che aveva questa o quella ragione per agire così e non se ne darà più pensiero. Perciò la storia è complicata, ma è piatta, è un tappeto intessuto di innumerevoli fili, tanti che nessuno al mondo potrebbe contarli, ma ha soltanto due dimensioni. Non conosce la profondità.
+                La terza dimensione la diamo noi, quando la leggiamo con il nostro punto di vista.
+            </p>
+        
+        </section>
+    </body>
+</html>
