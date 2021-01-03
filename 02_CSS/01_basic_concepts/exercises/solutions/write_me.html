@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="utf-8">
+        <title>Form</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <script>
+        const onSubmit = (event) => {
+            event.preventDefault();
+            const form = new FormData(event.target);
+            const data = Object.fromEntries( form.entries() );
+            console.log("data", data);
+        };
+    </script>
+    <link href="./style.css" rel="stylesheet" />
+    <body>
+
+
+        <header class="header">
+            <img class="header__logo" src="../../assets/firenze.svg" title="Stemma di Firenze" />
+            <h1 class="header__title">Comune Medioevale I/O</h1>
+        </header>
+
+
+        <aside class="menu">
+            <nav class="menu__navigation-wrapper">
+                <ul class="menu__navigation-list">
+                    <li class="menu__navigation-list-item"><a class="menu__link-item" href="#">Dichiarazione di Guerra</a></li>
+                    <li class="menu__navigation-list-item"><a class="menu__link-item" href="#">Dichiarazione di Pace</a></li>
+                    <li class="menu__navigation-list-item"><a class="menu__link-item" href="#">Richiesta Indulgenze</a></li>
+                    <li class="menu__navigation-list-item"><a class="menu__link-item" href="#">Nomina Nuovo Cavaliere</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        
+        <main class="content-wrapper">
+
+            <section>
+                <h2>Dichiarazione di Guerra</h2>
+                <button onclick="window.dialog.showModal();">aiuto compilazione</button>
+                <form onsubmit="return onSubmit(event);">
+                    <fieldset>
+                        <legend>Dati Principali</legend>
+                        <label>
+                            Nome della Guerra (*)
+                            <input required name="nomeOperazione" type="text" minlength="3" maxlength="50"/>
+                        </label>
+                        <br/>
+                        <label>
+                            Data e Ora di Partenza
+                            <input name="data" type="datetime-local" />
+                        </label>
+                        <br/>
+                        <label>
+                            Sfidante (*) <small>(può essere solo un Ghibellino: Arezzo, Pisa, Imperatore)</small>
+                            <input required name="sfidante" type="text" list="sfidante" pattern="[Pp]isa|[Aa]rezzo|[Ii]mperatore" />
+                            <datalist id="sfidante">
+                                <option>Pisa</option>
+                                <option>Arezzo</option>
+                                <option>Imperatore</option>
+                            </datalist>
+                        </label>
+                        <br/>
+                        <label>
+                            Costi Previsti (in fiorini)
+                            <input name="costi" type="number"  min="0" max="999999" step="0.1"/>
+                        </label>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Esercito</legend>
+                        <label>
+                            assoldiamo mercenari?
+                            <input type="checkbox" name="has-mercenari">
+                        </label>
+                        <br/>
+                        <label>
+                            Alleati Coinvolti
+                            <select multiple name="alleati">
+                                <option value="1">Lucca</option>
+                                <option value="2">Pistoia</option>
+                                <option value="3">Siena</option>
+                            </select>
+                        </label>
+                        <br/>
+                        <label>
+                            Numero di Cavalieri (*)
+                            <input required name="cavalieri" type="number"  min="0" max="5000" step="1"/>
+                        </label>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Logististica (*)</legend>
+                        <label>
+                            <input type="radio" name="logistica" required>
+                            passiamo per il Casentino
+                        </label>
+                        <br/>
+                        <label>
+                            <input type="radio"  name="logistica">
+                            passimo per il Valdarno
+                        </label>
+                        <br/>
+                        <label>
+                            <input type="radio" name="logistica">
+                            passiamo per la Francigena
+                        </label>
+                        <br/>
+                        <label>
+                            <input type="radio" name="logistica">
+                            passiamo per il Chianti
+                        </label>
+                    </fieldset>
+                    <menu>
+                        <button type="submit"  autofocus="true">Invia</button>
+                        <button type="reset"  autofocus="true">Reset</button>
+                    </menu>
+                </form>
+            </section>
+
+        </main>
+
+
+        <footer class="footer">
+            <p>Comune di Firenze ©1115</p>
+            <p><q>Regna cadunt luxu surgunt virtutibus urbes.</q> </p>
+        </footer>
+
+        <dialog id="dialog">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Costo Standard (in fiorini)</th>
+                        <th>Cavalieri Necessari</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <tr>
+                        <td>contro l'Imperatore</td>
+                        <td>600.000</td>
+                        <td>3.000</td>
+                    </tr>
+                    <tr>
+                        <td>contro comune Toscano</td>
+                        <td>400.000</td>
+                        <td>2.000</td>
+                    </tr>
+                    <tr>
+                        <td>contro regno Italiano</td>
+                        <td>500.000</td>
+                        <td>2.500</td>
+                    </tr>
+                </tbody>
+                
+                <caption>Costi di Riferimento</caption>
+
+            </table>
+
+            <form method="dialog" >
+                <button>chiudi</button>
+            </form>
+            
+        </dialog>
+    </body>
+</html>

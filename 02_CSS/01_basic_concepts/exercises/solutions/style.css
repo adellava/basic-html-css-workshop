@@ -1,0 +1,138 @@
+input:valid:not(:empty) {
+    border: 1px solid green;
+}
+input:empty {
+    border: 1px solid black;
+}
+input:invalid {
+    border: 1px dashed red;
+}
+
+input:focus:invalid {
+    border: 1px dashed black;
+}
+table {
+    border-collapse: collapse;
+}
+
+table,
+td {
+    border: 1px solid #333;
+}
+
+thead,
+tfoot {
+    background-color: #333;
+    color: #fff;
+}
+
+:root {
+    --color-dark: #112;
+    --color-light: #eee;
+    --color-primary: #492aa0;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    height: 78px;
+}
+.header__title {
+    margin: 0px;
+    padding: 20px;
+    overflow: auto;
+}
+.header__logo {
+    float: left;
+    width: 35px;
+    margin: 15px;
+}
+
+.footer {
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    padding: 5px 15px;
+    overflow: auto;
+    height: 94px;
+}
+
+.menu {
+    width: 20vw;
+    float: left;
+}
+
+.menu__navigation-wrapper {
+    margin: 15px;
+}
+
+.menu__navigation-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu__navigation-list-item:first-of-type {
+    padding-top: 1em;
+}
+
+.menu__navigation-list-item {
+    padding-bottom: 1em;
+}
+
+.menu__link-item {
+    color: var(--color-primary);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.menu__link-item:hover {
+    text-decoration: underline;
+}
+
+.menu__link-item::after {
+    content: "→";
+}
+
+.content-wrapper {
+    width: 80vw;
+    float: left;
+    min-height: calc(100vh - 172px);
+    overflow: auto;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+button {
+    border: none;
+    margin: 0;
+    padding: 10px 20px;
+    min-width: 5ch;
+    background: var(--color-light);
+    color: var(--color-dark);
+    line-height: 1;
+    cursor: pointer;
+}
+
+button:hover, button:focus {
+    background-color: var(--color-primary);
+    color: var(--color-light);
+}
+
+form {
+    margin: 20px 0
+}
+
+@media screen and (max-width: 1024px) { 
+    .menu {
+        width: 100vw;
+    }
+    .content-wrapper {
+        width: 100vw;
+    }
+}
