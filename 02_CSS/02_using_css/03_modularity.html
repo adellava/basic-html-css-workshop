@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="utf-8">
+        <title>Modularity</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            .codeexample {
+                background-color: #eee;
+                padding: 5px;
+                border-left: 4px solid darkslateblue;
+                padding-left: 20px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1>Modularity</h1>
+
+
+        <p>Il CSS contiene regole di stile che sono globali <em>by design</em>.</p>
+        <p>E' tuttavia possibile scomporre regole di stile in file separati in modo da organizzarle meglio e rendere il codice più leggibile.</p>
+        
+        <pre class="codeexample">
+            <code>
+@import "./link-element-example.css";
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+            </code>
+        </pre>
+        <p>Nel capitolo 2.1.2 sui colori e font abbiamo già usato questa scrittura che possiamo usare anche per i nostri file.</p>
+        
+        <p>Oppure importando più file attraverso</p>
+
+        <pre class="codeexample">
+            <code>
+&lt;link href="./link-element-example.css" rel="stylesheet" &gt;
+            </code>
+        </pre>
+
+        <p>E' importante sapere che...</p>
+
+        <p><strong>A. usando più link i file css vengono scaricati in parallelo</strong></p>
+        <p><strong>B. usando un unico link dove importo più file questa cosa non avviene</strong></p>
+
+    </body>
+</html>
