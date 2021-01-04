@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="utf-8">
+        <title>Layout</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            .codeexample {
+                background-color: #eee;
+                padding: 5px;
+                border-left: 4px solid darkslateblue;
+                padding-left: 20px;
+            }
+        </style>
+        <link href="./assets/layout.css" rel="stylesheet" />
+    </head>
+    <body>
+
+        <h1>Layout</h1>
+
+        <p>
+            Per approfondire vedere il talk di violo sui layout:
+            <br/>video: <a href="https://www.youtube.com/watch?v=wtUOQFi-3wY" target="_blank">Alessandro Violini - Layout Saga - in the web application era - CSSDAY 2018</a>
+            <br/>github: <a href="https://github.com/Violo/layout-saga/" target="_blank">esempi</a>
+        </p>
+
+        <p>
+            <em>Il layout è l'architettura dello spazio. Esso si occupa di organizzare lo spazio per i componenti e di stabilire i confini dei loro comportamenti come lo scrolling o l'utilizzo dell'asse z nella pagina.</em>
+            <br/>Spesso in un design system esistono blocchi che si occupano unicamente di organizzare il layout.
+        </p>
+        <p>
+            Si può parlare anche, metaforicamente, di "layout interno" o di "layout del componente", quando si organizza lo spazio specifico di un componente.
+        </p>
+        <p>
+            Le due proprietà di stile che maggiormente determinano il layout sono:
+
+            <ul>
+                <li><code>position</code>: che di default è <code>static</code>, specifica se un elemento deve essere posizionato o meno all'interno del <em>page flow</em></li>
+                <li><code>display</code>: che di default è <code>static</code>,</li>
+            </ul>
+        </p>
+
+
+        <section>
+            <h2>1. layout grid</h2>
+            <p><strong>Grid</strong> è pensato per creare layout in 2 dimensioni.</p>
+
+            <pre class="codeexample">
+                <code>
+/* Grid Layout */
+
+.grid {
+    display: grid;
+    grid-template-columns: 200px auto;
+    grid-template-rows: minmax(30px, 50px) 1fr minmax(30px, 50px);
+    grid-column-gap: 10px;
+    grid-row-gap: 20px;
+    grid-template-areas: 
+    "header header"
+    "aside  maincontent"
+    "footer footer";
+    width: 100%;
+    height: 100%;
+}
+
+.grid__header {
+    grid-area: header;
+    background-color: red;
+}
+
+.grid__footer {
+    grid-area: footer;
+    background-color: blue;
+}
+
+.grid__aside {
+    grid-area: aside;
+    background-color: green;
+    overflow: auto;
+}
+
+.grid__maincontent {
+    grid-area: maincontent;
+    background-color: gray;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+                    
+                </code>
+            </pre>
+
+            <div class="container">
+                <div class="grid">
+                    <header class="grid__header">
+                        header
+                    </header>
+                    <main class="grid__maincontent">
+
+                        <div class="padding-content">
+                            <h1>Cronica delle cose occorrenti ne' tempi suoi, Dino Compagni</h1>
+                        
+
+                            <p>
+                                Quando io incominciai propuosi di scrivere il vero delle cose certe che io vidi e udi’, però che furon cose notevoli le quali ne’ loro principi nullo le vide certamente come io: e quelle che chiaramente non vidi, proposi di scrivere secondo udienza; e perché molti secondo le loro volontà corrotte trascorrono nel dire, e corrompono il vero, proposi di scrivere secondo la maggior fama. E acciò che gli strani possano meglio intendere le cose advenute, dirò la forma della nobile città, la quale è nella provincia di Toscana, edificata sotto il segno di Marte, ricca e larga d’imperiale fiume d’acqua dolce il quale divide la città quasi per mezo, con temperata aria, guardata da nocivi venti, povera di terreno, abondante di buoni frutti, con cittadini pro’ d’armi superbi e discordevoli, e ricca di proibiti guadagni, dottata e temuta, per sua grandeza, dalle terre vicine, più che amata.
+    
+                                Pisa è vicina a Firenze a miglia XL, Lucca a miglia XL, Pistoia a miglia XX, Bologna a miglia LVIII, Arezo a miglia XL, Siena a miglia XXX, San Miniato in verso Pisa a miglia XX, Prato verso Pistoia a miglia X, Monte Accienico verso Bologna a miglia XXII, Fighine verso Arezo a miglia XVI, Poggi Bonizi verso Siena a miglia XVI; tutte le predette terre con molte altre castella e ville; e da tutte le predette parti, sono molti nobili uomini conti e cattani, i quali l’amano più in discordia che in pace, e ubidisconla più per paura che per amore. La detta città di Firenze è molto bene popolata, e generativa per la buona aria; i cittadini bene costumati, e le donne molto belle e adorne; i casamenti bellissimi, pieni di molte bisognevoli arti, oltre all’altre città d’Italia. Per la quale cosa molti di lontani paesi la vengono a vedere, non per necessità, ma per bontà de’ mestieri e arti, e per belleza e ornamento della città.
+    
+                                Quando io incominciai propuosi di scrivere il vero delle cose certe che io vidi e udi’, però che furon cose notevoli le quali ne’ loro principi nullo le vide certamente come io: e quelle che chiaramente non vidi, proposi di scrivere secondo udienza; e perché molti secondo le loro volontà corrotte trascorrono nel dire, e corrompono il vero, proposi di scrivere secondo la maggior fama. E acciò che gli strani possano meglio intendere le cose advenute, dirò la forma della nobile città, la quale è nella provincia di Toscana, edificata sotto il segno di Marte, ricca e larga d’imperiale fiume d’acqua dolce il quale divide la città quasi per mezo, con temperata aria, guardata da nocivi venti, povera di terreno, abondante di buoni frutti, con cittadini pro’ d’armi superbi e discordevoli, e ricca di proibiti guadagni, dottata e temuta, per sua grandeza, dalle terre vicine, più che amata.
+    
+                                Pisa è vicina a Firenze a miglia XL, Lucca a miglia XL, Pistoia a miglia XX, Bologna a miglia LVIII, Arezo a miglia XL, Siena a miglia XXX, San Miniato in verso Pisa a miglia XX, Prato verso Pistoia a miglia X, Monte Accienico verso Bologna a miglia XXII, Fighine verso Arezo a miglia XVI, Poggi Bonizi verso Siena a miglia XVI; tutte le predette terre con molte altre castella e ville; e da tutte le predette parti, sono molti nobili uomini conti e cattani, i quali l’amano più in discordia che in pace, e ubidisconla più per paura che per amore. La detta città di Firenze è molto bene popolata, e generativa per la buona aria; i cittadini bene costumati, e le donne molto belle e adorne; i casamenti bellissimi, pieni di molte bisognevoli arti, oltre all’altre città d’Italia. Per la quale cosa molti di lontani paesi la vengono a vedere, non per necessità, ma per bontà de’ mestieri e arti, e per belleza e ornamento della città.
+                                Quando io incominciai propuosi di scrivere il vero delle cose certe che io vidi e udi’, però che furon cose notevoli le quali ne’ loro principi nullo le vide certamente come io: e quelle che chiaramente non vidi, proposi di scrivere secondo udienza; e perché molti secondo le loro volontà corrotte trascorrono nel dire, e corrompono il vero, proposi di scrivere secondo la maggior fama. E acciò che gli strani possano meglio intendere le cose advenute, dirò la forma della nobile città, la quale è nella provincia di Toscana, edificata sotto il segno di Marte, ricca e larga d’imperiale fiume d’acqua dolce il quale divide la città quasi per mezo, con temperata aria, guardata da nocivi venti, povera di terreno, abondante di buoni frutti, con cittadini pro’ d’armi superbi e discordevoli, e ricca di proibiti guadagni, dottata e temuta, per sua grandeza, dalle terre vicine, più che amata.
+    
+                                Pisa è vicina a Firenze a miglia XL, Lucca a miglia XL, Pistoia a miglia XX, Bologna a miglia LVIII, Arezo a miglia XL, Siena a miglia XXX, San Miniato in verso Pisa a miglia XX, Prato verso Pistoia a miglia X, Monte Accienico verso Bologna a miglia XXII, Fighine verso Arezo a miglia XVI, Poggi Bonizi verso Siena a miglia XVI; tutte le predette terre con molte altre castella e ville; e da tutte le predette parti, sono molti nobili uomini conti e cattani, i quali l’amano più in discordia che in pace, e ubidisconla più per paura che per amore. La detta città di Firenze è molto bene popolata, e generativa per la buona aria; i cittadini bene costumati, e le donne molto belle e adorne; i casamenti bellissimi, pieni di molte bisognevoli arti, oltre all’altre città d’Italia. Per la quale cosa molti di lontani paesi la vengono a vedere, non per necessità, ma per bontà de’ mestieri e arti, e per belleza e ornamento della città.
+                            </p>
+                        </div>
+
+
+                        <!-- <div class="grid">
+                            <header class="grid__header">
+                                header
+                            </header>
+                            <main class="grid__maincontent">
+                                content
+                            </main>
+                            <aside class="grid__aside">
+                                aside
+                            </aside>
+                            <footer class="grid__footer">
+                                footer
+                            </footer>
+                        </div> -->
+                    </main>
+                    <aside class="grid__aside">
+                        aside
+                    </aside>
+                    <footer class="grid__footer">
+                        footer
+                    </footer>
+                </div>
+            </div>
+            
+            <p><a href="https://css-tricks.com/snippets/css/complete-guide-grid/" target="_blank">guarda qui</a> per una guida completa</p>
+        </section>
+
+
+
+        <section>
+            <h2>2. layout flex</h2>
+            <p><strong>Flex</strong> è pensato per creare layout in 1 dimensione, per questa ragione è più appropriato utilizzarlo per i layout interni dei component oppure per disporre elementi dello stesso tipo (es. card).</p>
+
+
+            <pre class="codeexample">
+                <code>
+/* Flex Layout */
+
+.flex-horizontal {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+    position: absolute;
+}
+
+.flex-horizontal__aside {
+    flex: 0 0 200px;
+}
+
+.flex-horizontal__body {
+    flex: 1 1 auto;
+    position: relative;
+}
+
+.flex-vertical {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+}
+
+.flex-vertical__bar {
+    flex: 0 0 60px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.flex-vertical__body {
+    flex: 1 1 auto;
+    position: relative;
+}
+
+.scrollable {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Flex Elements */
+
+.flex-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    flex-flow: row wrap;
+}
+
+.flex-container__child {
+    width: 150px;
+    height: 200px;
+    margin: 0 auto 20px auto;
+    background-color: yellow;
+}
+                </code>
+            </pre>
+            <div class="container">
+
+                <div class="flex-vertical">
+                    <header class="flex-vertical__bar" style="background-color: red;">
+                        header
+                    </header>
+
+                    <div class="flex-vertical__body">
+                        <div class="flex-horizontal">
+                            <aside class="flex-horizontal__aside" style="background-color: green;">
+                                aside
+                            </aside>
+                            <main class="flex-horizontal__body scrollable" style="background-color: gray;">
+
+
+                                
+                                <div class="padding-content">
+
+                                    
+
+
+
+                                    <div class="flex-container">
+                                        <div class="flex-container__child">card</div>
+                                        <div class="flex-container__child">card</div>
+                                        <div class="flex-container__child">card</div>
+                                        <div class="flex-container__child">card</div>
+                                        <div class="flex-container__child">card</div>
+                                        <div class="flex-container__child">card</div>
+                                        <div class="flex-container__child">card</div>
+                                        <div class="flex-container__child">card</div>
+                                        <div class="flex-container__child">card</div>
+                                        <div class="flex-container__child">card</div>
+                                        <div class="flex-container__child">card</div>
+                                        <div class="flex-container__child">card</div>
+                                        <div class="flex-container__child">card</div>
+                                        <div class="flex-container__child">card</div>
+                                        <div class="flex-container__child">card</div>
+                                        <div class="flex-container__child">card</div>
+                                        <div class="flex-container__child">card</div>
+                                        <div class="flex-container__child">card</div>
+                                        <div class="flex-container__child">card</div>
+                                        <div class="flex-container__child">card</div>
+                                    </div>
+                                    <!-- <h1>Cronica delle cose occorrenti ne' tempi suoi, Dino Compagni</h1>
+                                
+        
+                                    <p>
+                                        Quando io incominciai propuosi di scrivere il vero delle cose certe che io vidi e udi’, però che furon cose notevoli le quali ne’ loro principi nullo le vide certamente come io: e quelle che chiaramente non vidi, proposi di scrivere secondo udienza; e perché molti secondo le loro volontà corrotte trascorrono nel dire, e corrompono il vero, proposi di scrivere secondo la maggior fama. E acciò che gli strani possano meglio intendere le cose advenute, dirò la forma della nobile città, la quale è nella provincia di Toscana, edificata sotto il segno di Marte, ricca e larga d’imperiale fiume d’acqua dolce il quale divide la città quasi per mezo, con temperata aria, guardata da nocivi venti, povera di terreno, abondante di buoni frutti, con cittadini pro’ d’armi superbi e discordevoli, e ricca di proibiti guadagni, dottata e temuta, per sua grandeza, dalle terre vicine, più che amata.
+            
+                                        Pisa è vicina a Firenze a miglia XL, Lucca a miglia XL, Pistoia a miglia XX, Bologna a miglia LVIII, Arezo a miglia XL, Siena a miglia XXX, San Miniato in verso Pisa a miglia XX, Prato verso Pistoia a miglia X, Monte Accienico verso Bologna a miglia XXII, Fighine verso Arezo a miglia XVI, Poggi Bonizi verso Siena a miglia XVI; tutte le predette terre con molte altre castella e ville; e da tutte le predette parti, sono molti nobili uomini conti e cattani, i quali l’amano più in discordia che in pace, e ubidisconla più per paura che per amore. La detta città di Firenze è molto bene popolata, e generativa per la buona aria; i cittadini bene costumati, e le donne molto belle e adorne; i casamenti bellissimi, pieni di molte bisognevoli arti, oltre all’altre città d’Italia. Per la quale cosa molti di lontani paesi la vengono a vedere, non per necessità, ma per bontà de’ mestieri e arti, e per belleza e ornamento della città.
+            
+                                        Quando io incominciai propuosi di scrivere il vero delle cose certe che io vidi e udi’, però che furon cose notevoli le quali ne’ loro principi nullo le vide certamente come io: e quelle che chiaramente non vidi, proposi di scrivere secondo udienza; e perché molti secondo le loro volontà corrotte trascorrono nel dire, e corrompono il vero, proposi di scrivere secondo la maggior fama. E acciò che gli strani possano meglio intendere le cose advenute, dirò la forma della nobile città, la quale è nella provincia di Toscana, edificata sotto il segno di Marte, ricca e larga d’imperiale fiume d’acqua dolce il quale divide la città quasi per mezo, con temperata aria, guardata da nocivi venti, povera di terreno, abondante di buoni frutti, con cittadini pro’ d’armi superbi e discordevoli, e ricca di proibiti guadagni, dottata e temuta, per sua grandeza, dalle terre vicine, più che amata.
+            
+                                        Pisa è vicina a Firenze a miglia XL, Lucca a miglia XL, Pistoia a miglia XX, Bologna a miglia LVIII, Arezo a miglia XL, Siena a miglia XXX, San Miniato in verso Pisa a miglia XX, Prato verso Pistoia a miglia X, Monte Accienico verso Bologna a miglia XXII, Fighine verso Arezo a miglia XVI, Poggi Bonizi verso Siena a miglia XVI; tutte le predette terre con molte altre castella e ville; e da tutte le predette parti, sono molti nobili uomini conti e cattani, i quali l’amano più in discordia che in pace, e ubidisconla più per paura che per amore. La detta città di Firenze è molto bene popolata, e generativa per la buona aria; i cittadini bene costumati, e le donne molto belle e adorne; i casamenti bellissimi, pieni di molte bisognevoli arti, oltre all’altre città d’Italia. Per la quale cosa molti di lontani paesi la vengono a vedere, non per necessità, ma per bontà de’ mestieri e arti, e per belleza e ornamento della città.
+                                        Quando io incominciai propuosi di scrivere il vero delle cose certe che io vidi e udi’, però che furon cose notevoli le quali ne’ loro principi nullo le vide certamente come io: e quelle che chiaramente non vidi, proposi di scrivere secondo udienza; e perché molti secondo le loro volontà corrotte trascorrono nel dire, e corrompono il vero, proposi di scrivere secondo la maggior fama. E acciò che gli strani possano meglio intendere le cose advenute, dirò la forma della nobile città, la quale è nella provincia di Toscana, edificata sotto il segno di Marte, ricca e larga d’imperiale fiume d’acqua dolce il quale divide la città quasi per mezo, con temperata aria, guardata da nocivi venti, povera di terreno, abondante di buoni frutti, con cittadini pro’ d’armi superbi e discordevoli, e ricca di proibiti guadagni, dottata e temuta, per sua grandeza, dalle terre vicine, più che amata.
+            
+                                        Pisa è vicina a Firenze a miglia XL, Lucca a miglia XL, Pistoia a miglia XX, Bologna a miglia LVIII, Arezo a miglia XL, Siena a miglia XXX, San Miniato in verso Pisa a miglia XX, Prato verso Pistoia a miglia X, Monte Accienico verso Bologna a miglia XXII, Fighine verso Arezo a miglia XVI, Poggi Bonizi verso Siena a miglia XVI; tutte le predette terre con molte altre castella e ville; e da tutte le predette parti, sono molti nobili uomini conti e cattani, i quali l’amano più in discordia che in pace, e ubidisconla più per paura che per amore. La detta città di Firenze è molto bene popolata, e generativa per la buona aria; i cittadini bene costumati, e le donne molto belle e adorne; i casamenti bellissimi, pieni di molte bisognevoli arti, oltre all’altre città d’Italia. Per la quale cosa molti di lontani paesi la vengono a vedere, non per necessità, ma per bontà de’ mestieri e arti, e per belleza e ornamento della città.
+                                    </p> -->
+                                </div>
+                            </main>
+                        </div>
+                    </div>
+
+
+                    <footer class="flex-vertical__bar" style="background-color: blue;">
+                        footer
+                    </footer>
+                </div>
+
+            </div>
+
+            <p><a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank">guarda qui</a> per una guida completa</p>
+        </section>
+
+    </body>
+</html>

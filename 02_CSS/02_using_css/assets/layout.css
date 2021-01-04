@@ -1,0 +1,108 @@
+.padding-content {
+    padding: 20px;
+}
+
+.container {
+    width: 1200px;
+    height: 600px;
+    border: 1px solid red;
+    position: relative;
+}
+
+/* Grid Layout */
+
+.grid {
+    display: grid;
+    grid-template-columns: 200px auto;
+    grid-template-rows: minmax(30px, 50px) 1fr minmax(30px, 50px);
+    grid-column-gap: 10px;
+    grid-row-gap: 20px;
+    grid-template-areas: 
+    "header header"
+    "aside  maincontent"
+    "footer footer";
+    width: 100%;
+    height: 100%;
+}
+
+.grid__header {
+    grid-area: header;
+    background-color: red;
+}
+
+.grid__footer {
+    grid-area: footer;
+    background-color: blue;
+}
+
+.grid__aside {
+    grid-area: aside;
+    background-color: green;
+    overflow: auto;
+}
+
+.grid__maincontent {
+    grid-area: maincontent;
+    background-color: gray;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Flex Layout */
+
+.flex-horizontal {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+    position: absolute;
+}
+
+.flex-horizontal__aside {
+    flex: 0 0 200px;
+}
+
+.flex-horizontal__body {
+    flex: 1 1 auto;
+    position: relative;
+}
+
+.flex-vertical {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+}
+
+.flex-vertical__bar {
+    flex: 0 0 60px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.flex-vertical__body {
+    flex: 1 1 auto;
+    position: relative;
+}
+
+.scrollable {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Flex Elements */
+
+.flex-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    flex-flow: row wrap;
+}
+
+.flex-container__child {
+    width: 150px;
+    height: 200px;
+    margin: 0 auto 20px auto;
+    background-color: yellow;
+}
