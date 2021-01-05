@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="utf-8">
+        <title>BEM</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            .codeexample {
+                background-color: #eee;
+                padding: 5px;
+                border-left: 4px solid darkslateblue;
+                padding-left: 20px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1>BEM</h1>
+
+
+        <p>
+            <em>
+                Si ok... ma come si organizzano e si scrivono e si organizzano le regole di stile in grandi progetti?
+            </em>
+        </p>
+
+        <p>
+            Ci sono vari approcci
+        </p>
+        <ul>
+            <li>Functional CSS</li>
+            <li>Atomic</li>
+            <li>SMACSS</li>
+            <li>[...]</li>
+        </ul>
+
+        <h2>Perché BEM?</h2>
+
+        <ol>
+            <li>Fornisce pochi principi, chiari e facili da seguire</li>
+            <li>Risuona bene con molte best practice che usiamo: componenti, design system, interface inventory</li>
+            <li>Evita i side effect dei selettori compositi (<abbr>aka</abbr> "la cascata")</li>
+            <li>BEM è come l'acqua, entra nel recipiente che lo contiene</li>
+            <li>Si adatta a tutti i progetti: grandi/piccoli, app/siti, complessi/semplici</li>
+        </ol>
+
+
+        <h2>Esempio</h2>
+
+        <style>
+
+            /* blocco mainheader */
+            .mainheader {
+                width: 100%;
+                height: 48px;
+                background-color: #112;
+                color: #eed;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+            }
+
+            /* element "item-wrapper" di mainheader */
+            .mainheader__item-wrapper {
+                margin: 0 16px 0 0;
+            }
+
+            /* element "item" di mainheader */
+            .mainheader__item {
+                font-size: 12px;
+                color: #eed;
+                text-decoration: none;
+                text-transform: lowercase;
+                margin-left: 8px;
+                font-weight: normal;
+            }
+            .mainheader__item:hover {
+                color: #fff;
+                text-decoration: underline;
+            }
+            /* modificatore "active" di "item" elemento di "mainheader" => NB nel modificatore ci sta solo il codice "modificato", non viene ripetuto tutto */
+            .mainheader__item--active {
+                color: #fff;
+                font-weight: bold;
+            }
+
+
+            /* element "title" di "mainheader" */
+            .mainheader__title {
+                font-size: 18px;
+                margin: 0 16px;
+                color: #fcee65;
+            }
+        </style>
+        <pre class="codeexample">
+            <code>
+/* blocco "mainheader" => il componente */
+.mainheader {
+    width: 100%;
+    height: 48px;
+    background-color: #112;
+    color: #eed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+/* elemento "item" di "mainheader" => è evidente il contesto di utilizzo! */
+.mainheader__item {
+    font-size: 12px;
+    color: #eed;
+    text-decoration: none;
+    text-transform: lowercase;
+    margin-left: 8px;
+    font-weight: normal;
+}
+/* modificatore active di item elemento di mainheader => NB nel modificatore ci sta solo il codice "modificato", non viene ripetuto tutto */
+.mainheader__item--active {
+    color: #fff;
+    font-weight: bold;
+}
+/* element title di mainheader */
+.mainheader__title {
+    font-size: 18px;
+    margin: 0 16px;
+    color: #fcee65;
+}
+[...] /* c'è anche `.mainheader__item:hover` e  `.mainheader__item-wrapper`  */
+/* HTML */
+&lt;header class="mainheader"&gt;
+    &lt;h1 class="mainheader__title"&gt;Comune Medioevale I/O&lt;/h1&gt;
+    &lt;nav class="mainheader__item-wrapper"&gt;
+        &lt;a href="#" class="mainheader__item mainheader__item--active"&gt;dichiarazione di guerra&lt;/a&gt;
+        &lt;a href="#" class="mainheader__item"&gt;dichiarazione di pace&lt;/a&gt;
+        [...]
+    &lt;/nav&gt;
+&lt;/header&gt;
+            </code>
+        </pre>
+        <div style="width: 1200px; height: auto;">
+            <header class="mainheader">
+                <h1 class="mainheader__title">Comune Medioevale I/O</h1>
+                <nav class="mainheader__item-wrapper">
+                    <a href="#" class="mainheader__item mainheader__item--active">dichiarazione di guerra</a>
+                    <a href="#" class="mainheader__item">dichiarazione di pace</a>
+                    <a href="#" class="mainheader__item">Richiesta Indulgenze</a>
+                    <a href="#" class="mainheader__item">Nomina Nuovo Cavaliere</a>
+                </nav>
+            </header>
+        </div>
+
+
+        <h2>Teoria</h2>
+
+        <p>Regole</p>
+        <ol>
+            <li>Si usano solo regole di stile legate alle classi</li>
+            <li>Non si usano selettori compositi</li>
+            <li>Parte dal concetto di componenente che in BEM è "il blocco"</li>
+            <li>Si usa questa convenzione
+                <ul>
+                    <li><strong>Blocco</strong>: <code>.mainheader</code></li>
+                    <li><strong>Elemento</strong>: <code>.mainheader__menu-item</code>, <code>.mainheader__title</code>, <code>.mainheader__item-wrapper</code></li>
+                    <li><strong>Modificatore</strong>: <code>.mainheader__menu-item--active</code></li>
+                </ul>
+            </li>
+        </ol>
+
+
+
+        <h2>Domande frequenti</h2>
+
+
+        <ul>
+            <li>
+                <strong>Come faccio a sapere quali sono i blocchi?</strong>
+                I blocchi sono i componenti del design system, li ricavi da <a href="https://bradfrost.com/blog/post/interface-inventory/" target="_black">un'interface inventory</a>
+            </li>
+            <li>
+                <strong>Devo usare BEM anche quando ho un componente semplice fatto di un solo tag?</strong>
+                sì, semplicemente c'è solo il <em>blocco</em>, non ci sono elementi o modificatori, per ora.
+            </li>
+            <li>
+                <strong>I modificatori devono rispecchiare il codice es <code>.mainheader__item--border-top-2px-red</code></strong>
+                No, i nomi rispecchiano il dominio, il linguaggio condiviso che c'è nel team, e il ruolo del componente nel design system. Vanno scelti con cura e condivisi con tutto il team.
+            </li>
+            <li>
+                <strong>E' importante l'ordine con cui scrivo le regole di stile?</strong>
+                sì, il modificatore va sempre va sempre scritto dopo l'elemento o il blocco che sovrascrive.
+            </li>
+            <li>
+                <strong>Posso mixare più blocchi?</strong>
+                sì, non c'è problema.
+            </li>
+            <li>
+                <strong>Si può usare il nome dell'elemento come "base" (es <code>header</code>) per il blocco al posto di una classe?</strong>
+                No, altrimenti: non è chiaro a cosa si riferiscono eventuali modificatori, inoltre non hai la flessibilità di avere più blocchi legati allo stesso tag (ricorda che il numero di tag è finito).
+            </li>
+            <li>
+                <strong>Può un modificatore di blocco modificare gli elementi?</strong>
+                No, altrimenti dovresti scrivere selettori compositi (ci sono alcune eccezioni come il "theming", ma sono eccezioni, appunto).
+            </li>
+
+                <strong>Si possono creare modificatori globali come <code>.hidden</code>, <code>.font-size-14</code>?</strong>
+                I modificatori globali vanno usati con molta parsimonia, ma a volte sono utili anche se escono dalle regole di BEM.
+            </li>
+        </ul>
+
+
+
+    </body>
+</html>
