@@ -2,7 +2,7 @@
 <html lang="it">
     <head>
         <meta charset="utf-8">
-        <title>CSS Sintassi e Scritture</title>
+        <title>CSS Sintassi</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <style>
             .codeexample {
@@ -15,7 +15,7 @@
     </head>
     <body>
 
-        <h1>CSS Sintassi e Scritture</h1>
+        <h1>CSS Sintassi</h1>
 
         <section>
 
@@ -143,6 +143,11 @@ article {
                     color: teal;
                 }
 
+                /* due classi "insieme" */
+                .classefiglia.classefiglia-modificata {
+                    color: yellowgreen;
+                }
+
                 /* elemento adiacente */
                 .mialista ~ .mianota {
                     color: brown;
@@ -170,6 +175,12 @@ article {
     color: teal;
 }
 
+
+/* due classi "insieme" */
+.classefiglia.classefiglia-modificata {
+    color: yellowgreen;
+}
+
 /* elemento adiacente */
 .mialista ~ .mianota {
     color: brown;
@@ -186,11 +197,14 @@ article {
                     <code>&lt;p class="mianota" &gt;</code>elemento precedente<code>&lt;/p&gt;</code>
                 </p>
                 <ol class="mialista">
+                    <li>
+                        <code>&lt;li &gt;</code> elmento di lista con .classefiglia in un  <span class="classefiglia"><code>&lt;span class="classefiglia" &gt;</code>sotto elemento<code>&lt;/span&gt;</code></span> <code>&lt;/li&gt;</code>
+                    </li>
                     <li class="classefiglia">
                         <code>&lt;li class="classefiglia" &gt;</code> elmento di lista con la classe <code>&lt;/li&gt;</code>
                     </li>
                     <li>
-                        <code>&lt;li &gt;</code> elmento di lista con .classefiglia in un  <span class="classefiglia"><code>&lt;span class="classefiglia" &gt;</code>sotto elemento<code>&lt;/span&gt;</code></span> <code>&lt;/li&gt;</code>
+                        <code>&lt;li &gt;</code> elmento di lista con .classefiglia e .classefiglia-modificata <span class="classefiglia classefiglia-modificata"><code>&lt;span class="classefiglia classefiglia-modificata" &gt;</code>insieme<code>&lt;/span&gt;</code></span> <code>&lt;/li&gt;</code>
                     </li>
                     <li>
                         <code>&lt;li &gt;</code> elmento di lista senza la classe <code>&lt;/li&gt;</code>
