@@ -32,6 +32,7 @@
             <li>Atomic</li>
             <li>SMACSS</li>
             <li>[...]</li>
+            <li><strong>BEM</strong></li>
         </ul>
 
         <h2>Perché BEM?</h2>
@@ -153,16 +154,16 @@
 
         <h2>Teoria</h2>
 
-        <p>Regole</p>
         <ol>
             <li>Si usano solo regole di stile legate alle classi</li>
-            <li>Non si usano selettori compositi</li>
-            <li>Parte dal concetto di componenente che in BEM è "il blocco"</li>
+            <li>Non si usano selettori compositi, es <code>.mainheader .title</code>, <code>header.mainheader</code>, <code>menu-item.active</code></li>
+            <li>Parte dal concetto di componenente che in BEM viene definito "il blocco"</li>
+            <li>Ogni blocco è indipendentemente</li>
             <li>Si usa questa convenzione
                 <ul>
-                    <li><strong>Blocco</strong>: <code>.mainheader</code></li>
-                    <li><strong>Elemento</strong>: <code>.mainheader__menu-item</code>, <code>.mainheader__title</code>, <code>.mainheader__item-wrapper</code></li>
-                    <li><strong>Modificatore</strong>: <code>.mainheader__menu-item--active</code></li>
+                    <li><strong>Blocco</strong>: il componente: <code>.mainheader</code></li>
+                    <li><strong>Elemento/i</strong>: tutto ciò che sta dentro il blocco, indipendentemente dal nesting: <code>.mainheader__menu-item</code>, <code>.mainheader__title</code>, <code>.mainheader__item-wrapper</code></li>
+                    <li><strong>Modificatore</strong>: ciò che può creare delle varianti di quel componente: <code>.mainheader__menu-item--active</code></li>
                 </ul>
             </li>
         </ol>
@@ -201,7 +202,6 @@
                 <strong>Può un modificatore di blocco modificare gli elementi?</strong>
                 No, altrimenti dovresti scrivere selettori compositi (ci sono alcune eccezioni come il "theming", ma sono eccezioni, appunto).
             </li>
-
                 <strong>Si possono creare modificatori globali come <code>.hidden</code>, <code>.font-size-14</code>?</strong>
                 I modificatori globali vanno usati con molta parsimonia, ma a volte sono utili anche se escono dalle regole di BEM.
             </li>
