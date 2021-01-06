@@ -14,32 +14,31 @@
 .mainheader__logo {
     height: 30px;
     display: inline-flex;
-    margin: 0 8px 0 0;
+    margin: 0 var(--spacing-x2) 0 0;
 }
 
 .mainheader__title {
-    font-size: 18px;
+    font-size: var(--font-size-featured);
     color: var(--color-accent);
     display: inline-flex;
 }
 
 .mainheader__logotipo-wrapper {
-    margin: 0 16px;
+    margin: 0 var(--spacing-x4);
     display: flex;
     align-items: center;
-    height: 48px;
 }
 
 .mainheader__item-wrapper {
-    margin: 0 16px 0 0;
+    margin: 0 var(--spacing-x4) 0 0;
 }
 
 .mainheader__item {
-    font-size: 12px;
+    font-size: var(--font-size-meta);
     color: var(--color-light);
     text-decoration: none;
     text-transform: lowercase;
-    margin-left: 8px;
+    margin-left: var(--spacing-x2);
     font-weight: normal;
 }
 .mainheader__item:hover {
@@ -60,12 +59,12 @@
     .mainheader__item-wrapper {
         display: flex;
         justify-content: center;
-        padding: 8px 16px 0 16px;
+        padding: var(--spacing-x2) var(--spacing-x4) 0 var(--spacing-x4);
     }
     .mainheader__item {
         height: 32px;
         margin-left: 0px;
-        padding: 0 4px;
+        padding: 0 var(--spacing-x1);
         text-align: center;
     }
     .mainheader__item:hover {

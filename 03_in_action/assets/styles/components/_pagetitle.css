@@ -2,7 +2,7 @@
 
 .pagetitle {
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 20px;
+    font-size: var(--font-size-main);
     font-weight: 400;
-    margin: 16px 0 16px 0;
+    margin: var(--spacing-x4) 0 var(--spacing-x4) 0;
 }

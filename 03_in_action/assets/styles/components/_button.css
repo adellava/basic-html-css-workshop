@@ -10,7 +10,7 @@
     line-height: 1;
     cursor: pointer;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 14px;
+    font-size: var(--font-size-normal);
 }
 
 .button:hover, .button:focus {

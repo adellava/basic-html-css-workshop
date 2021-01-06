@@ -6,11 +6,11 @@
     background-color: var(--color-dark);
     color: var(--color-light);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    padding: 8px 16px
+    padding: var(--spacing-x2) var(--spacing-x4)
 }
 
 .footer__paragraph {
-    margin: 16px;
-    font-size: 12px;
+    margin: var(--spacing-x4);
+    font-size: var(--font-size-meta);
 }
 

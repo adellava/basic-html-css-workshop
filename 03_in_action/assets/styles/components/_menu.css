@@ -10,5 +10,5 @@
     align-items: center;
     justify-content: space-between;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    margin-bottom: 16px;
+    margin-bottom: var(--spacing-x4);
 }

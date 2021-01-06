@@ -4,8 +4,15 @@
     --color-primary: #492aa0;
     --color-accent: #fcee65; 
     --color-neutral: #cccccc; 
-    /* TODO */
+
     --spacing-x1: 4px;
     --spacing-x2: 8px;
     --spacing-x4: 16px;
+    --spacing-x8: 32px;
+
+    --font-size-small: 10px;
+    --font-size-meta: 12px;
+    --font-size-normal: 14px;
+    --font-size-featured: 18px;
+    --font-size-main:20px;
 }
