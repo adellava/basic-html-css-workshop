@@ -1,0 +1,21 @@
+/* table component */
+
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-bottom: 16px;
+}
+
+.table__th {
+    font-weight: 700;
+    font-size: 14px;
+    padding: 4px;
+}
+
+.table__td {
+    font-weight: 400;
+    font-size: 12px;
+    padding: 4px;
+}

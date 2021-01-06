@@ -1,0 +1,27 @@
+/* layout vertical component */
+
+.layoutvertical {
+    display: grid;
+    grid-template-rows: minmax(30px, max-content) 1fr minmax(30px, max-content);
+    grid-row-gap: 0px;
+    grid-template-areas: 
+    "header"
+    "maincontent"
+    "footer";
+    width: 100%;
+    height: 100%;
+}
+
+.layoutvertical__header {
+    grid-area: header;
+}
+
+.layoutvertical__footer {
+    grid-area: footer;
+}
+
+.layoutvertical__maincontent {
+    grid-area: maincontent;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}

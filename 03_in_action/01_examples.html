@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html class="html" lang="it">
+    <head>
+        <meta charset="utf-8">
+        <title>Form</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <script>
+        const onSubmit = (event) => {
+            event.preventDefault();
+            const form = new FormData(event.target);
+            const data = Object.fromEntries( form.entries() );
+            console.log("data", data);
+        };
+    </script>
+    <link href="./assets/styles/style.css" rel="stylesheet" />
+    <body class="html__body" >
+
+        <div class="layoutvertical">
+            <div class="layoutvertical__header">
+
+                <header class="mainheader">
+                    <section class="mainheader__logotipo-wrapper">
+                        <img class="mainheader__logo" title="Stemma di Firenze" src="assets/images/firenze.svg" />
+                        <h1 class="mainheader__title">Comune Medioevale I/O</h1>
+                    </section>
+                    <nav class="mainheader__item-wrapper">
+                        <a href="#" class="mainheader__item mainheader__item--active">dichiarazione di guerra</a>
+                        <a href="#" class="mainheader__item">dichiarazione di pace</a>
+                        <a href="#" class="mainheader__item">Richiesta Indulgenze</a>
+                        <a href="#" class="mainheader__item">Nomina Nuovo Cavaliere</a>
+                    </nav>
+                </header>
+
+            </div>
+            <div class="layoutvertical__maincontent">
+
+                <main class="content-wrapper">
+                    <section>
+                        <h2 class="pagetitle">Dichiarazione di Guerra</h2>
+                        <menu class="menu">
+                            <div class="menu__actions-group">
+                                <button class="button button--secondary" onclick="window.dialog.showModal();">aiuto compilazione</button>
+                            </div>
+                        </menu>
+                        <form onsubmit="return onSubmit(event);">
+                            <fieldset class="fieldset">
+                                <legend class="fieldset__legend">Dati Principali</legend>
+                                <label class="inputblock">
+                                    <span class="inputblock__label">Nome della Guerra (*)</span>
+                                    <input class="inputblock__field" required name="nomeOperazione" type="text" minlength="3" maxlength="50"/>
+                                </label>
+                                <label class="inputblock">
+                                    <span class="inputblock__label">Data e Ora di Partenza</span>
+                                    <input class="inputblock__field" name="data" type="datetime-local" />
+                                </label>
+                                <label class="inputblock">
+                                    <span class="inputblock__label">Sfidante (*)</span>
+                                    <small class="inputblock__helptext">(può essere solo un Ghibellino: Arezzo, Pisa, Imperatore)</small>
+                                    <input class="inputblock__field" required name="sfidante" type="text" list="sfidante" pattern="[Pp]isa|[Aa]rezzo|[Ii]mperatore" />
+                                    <datalist id="sfidante">
+                                        <option>Pisa</option>
+                                        <option>Arezzo</option>
+                                        <option>Imperatore</option>
+                                    </datalist>
+                                </label>
+                                <label class="inputblock">
+                                    <span class="inputblock__label">Costi Previsti (in fiorini)</span>
+                                    <input class="inputblock__field" name="costi" type="number"  min="0" max="999999" step="0.1"/>
+                                </label>
+                            </fieldset>
+                            <fieldset class="fieldset">
+                                <legend class="fieldset__legend">Esercito</legend>
+                                <label class="inputblock">
+                                    <span class="inputblock__label">assoldiamo mercenari?</span>
+                                    <input class="inputblock__field" type="checkbox" name="has-mercenari">
+                                </label>
+                                <label class="inputblock">
+                                    <span class="inputblock__label">Alleati Coinvolti</span>
+                                    <select multiple name="alleati">
+                                        <option value="1">Lucca</option>
+                                        <option value="2">Pistoia</option>
+                                        <option value="3">Siena</option>
+                                    </select>
+                                </label>
+                                <label class="inputblock">
+                                    <span class="inputblock__label">Numero di Cavalieri (*)</span>
+                                    <input class="inputblock__field" required name="cavalieri" type="number"  min="0" max="5000" step="1"/>
+                                </label>
+                            </fieldset>
+                            <fieldset class="fieldset">
+                                <legend class="fieldset__legend">Logististica (*)</legend>
+                                <label class="inputblock">
+                                    <input class="inputblock__field" type="radio" name="logistica" required>
+                                    passiamo per il Casentino
+                                </label>
+                                <label class="inputblock">
+                                    <input class="inputblock__field" type="radio"  name="logistica">
+                                    passimo per il Valdarno
+                                </label>
+                                <label class="inputblock">
+                                    <input class="inputblock__field" type="radio" name="logistica">
+                                    passiamo per la Francigena
+                                </label>
+                                <label class="inputblock">
+                                    <input class="inputblock__field" type="radio" name="logistica">
+                                    passiamo per il Chianti
+                                </label>
+                            </fieldset>
+                            <menu class="menu">
+                                <div class="menu__actions-group">
+                                    <button class="button" type="submit"  autofocus="true">Invia</button>
+                                    <button class="button" type="reset"  autofocus="true">Reset</button>
+                                </div>
+                            </menu>
+                        </form>
+                    </section>
+                </main>
+
+            </div>
+            <div class="layoutvertical__footer">
+
+                <footer class="footer">
+                    <p class="footer__paragraph">Comune di Firenze ©1115</p>
+                    <p class="footer__paragraph"><q>Regna cadunt luxu surgunt virtutibus urbes.</q> </p>
+                </footer>
+
+            </div>
+        </div>
+
+
+        <dialog id="dialog">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="table__th">Tipo</th>
+                        <th class="table__th">Costo Standard (in fiorini)</th>
+                        <th class="table__th">Cavalieri Necessari</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <tr>
+                        <td class="table__td">contro l'Imperatore</td>
+                        <td class="table__td">600.000</td>
+                        <td class="table__td">3.000</td>
+                    </tr>
+                    <tr>
+                        <td class="table__td">contro comune Toscano</td>
+                        <td class="table__td">400.000</td>
+                        <td class="table__td">2.000</td>
+                    </tr>
+                    <tr>
+                        <td class="table__td">contro regno Italiano</td>
+                        <td class="table__td">500.000</td>
+                        <td class="table__td">2.500</td>
+                    </tr>
+                </tbody>
+                
+                <caption>Costi di Riferimento</caption>
+
+            </table>
+
+            <form method="dialog" >
+                <button class="button">chiudi</button>
+            </form>
+            
+        </dialog>
+    </body>
+</html>

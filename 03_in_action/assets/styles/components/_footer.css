@@ -1,0 +1,16 @@
+/* footer component */
+
+.footer {
+    height: auto;
+    overflow: auto;
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 8px 16px
+}
+
+.footer__paragraph {
+    margin: 16px;
+    font-size: 12px;
+}
+

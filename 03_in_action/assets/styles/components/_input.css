@@ -1,0 +1,25 @@
+/* input component */
+
+.inputblock {
+    width: 100%;
+    margin-bottom: 4px;
+    font-size: 14px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: var(--color-dark);
+    display: block;
+}
+
+.inputblock__label {
+    font-size: 12px;
+}
+
+.inputblock__helptext {
+    font-size: 10px;
+}
+
+.inputblock__field {
+    font-size: 14px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+    padding: 0;
+}

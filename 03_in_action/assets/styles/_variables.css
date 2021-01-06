@@ -1,0 +1,11 @@
+:root {
+    --color-dark: #112;
+    --color-light: #eee;
+    --color-primary: #492aa0;
+    --color-accent: #fcee65; 
+    --color-neutral: #cccccc; 
+    /* TODO */
+    --spacing-x1: 4px;
+    --spacing-x2: 8px;
+    --spacing-x4: 16px;
+}

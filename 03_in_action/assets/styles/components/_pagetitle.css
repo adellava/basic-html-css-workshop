@@ -1,0 +1,8 @@
+/* page title component */
+
+.pagetitle {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+    font-weight: 400;
+    margin: 16px 0 16px 0;
+}

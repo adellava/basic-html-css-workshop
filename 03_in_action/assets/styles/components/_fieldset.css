@@ -1,0 +1,14 @@
+/* fildsetcomponent component */
+
+.fieldset {
+    border: 2px solid var(--color-neutral);
+    margin-bottom: 16px;
+}
+
+.fieldset__legend {
+    font-size: 12px;
+    padding: 4px 8px;
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
