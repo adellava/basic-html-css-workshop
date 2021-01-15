@@ -62,6 +62,17 @@
                     Tipo di Impiego
                     <input name="lavoro" list="mestieri" pattern="[Pp]oeta|[Bb]anchiere|[Mm]ercante|[Ss]anto|[Nn]avigatore|[Uu]suraio|[Cc]avaliere|[Pp]rete|[Mm]endicante" required type="text" />
                     <small>(valori accettati: poeta, banchiere, mercante, santo, navigatore, usuraio, cavaliere, prete, mendicante)</small>
+                    <datalist id="mestieri">
+                        <option>poeta</option>
+                        <option>banchiere</option>
+                        <option>mercante</option>
+                        <option>santo</option>
+                        <option>navigatore</option>
+                        <option>usuraio</option>
+                        <option>cavaliere</option>
+                        <option>prete</option>
+                        <option>mendicante</option>
+                    </datalist>
                 </label>
 
             </fieldset>
@@ -200,7 +211,7 @@
         </fieldset>
         <fieldset>
             <legend>File</legend>
-            <input type="file" />
+            <input type="file"/>
         </fieldset>
 
         <fieldset>
