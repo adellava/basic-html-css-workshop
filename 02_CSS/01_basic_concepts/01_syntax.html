@@ -378,33 +378,33 @@ article {
                 <code>
                     
 :root { --color: blue; }
-#idesempio { --color: red; }
+#idesempio2 { --color: red; }
 
-.root {
+.rootElement {
     color: var(--color);
 }
-#idesempio {
+#idesempio2 {
     color: var(--color);
 }
                 </code>
             </pre>
             <style>
 
-            :root { --color: blue; }
-            #idesempio { --color: red; }
+            :root { --color: green; }
+            #idesempio2 { --color:darkcyan; }
 
-            #idesempio {
+            #idesempio2 {
                 color: var(--color);
             }
-            .root {
+            .rootElement {
                 color: var(--color);
             }
 
 
             </style>
-            <div class="root">
+            <div class="rootElement">
                 <p>Sono blu come mio padre!</p>
-                <p id="idesempio">
+                <p id="idesempio2">
 
                     Sono rosso perché il mio id me lo dice!
                     <span>Sono uno span rosso pure io per l'ereditarietà!</span>
